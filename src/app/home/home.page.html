@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Blank </ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong>Sales d'espera virtuals</strong>
+    <br /><br />
+    <p>
+      <ion-button size="large" color="primary" (click)="directToEmergency()">
+        <ion-icon slot="start" name="star"></ion-icon>
+        Sala d'espera urgències
+      </ion-button>
+      <br />
+      <br />
+      <ion-button size="large">
+        Sala d'espera quiròfans
+        <ion-icon slot="start" name="star"></ion-icon>
+      </ion-button>
+    </p>
+  </div>
+</ion-content>

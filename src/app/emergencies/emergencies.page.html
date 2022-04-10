@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>emergencies</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-text-center">
+    <ion-row>
+      <ion-card>
+        <ion-card-content>
+          <ion-text color="dark">
+            <h1>Sales d'espera urgències</h1>
+          </ion-text>
+          <br />
+          <ion-text color="dark">
+            <h5>Introdueixi número de seguiment del pacient:</h5>
+          </ion-text>
+          <ion-item>
+            <ion-input></ion-input>
+          </ion-item>
+          <br />
+          <ion-col size="12"> Accepto els termes i condicions </ion-col>
+          <ion-checkbox color="primary"></ion-checkbox>
+          <br />
+          <br />
+          <ion-button
+            size="medium"
+            color="secondary"
+            (click)="directToEmergency()"
+          >
+            <ion-icon slot="start" name="search"></ion-icon>
+            Cerca
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ion-content>
