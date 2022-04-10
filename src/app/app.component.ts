@@ -13,6 +13,7 @@ export class AppComponent {
     this.router.navigate(['/legal']);
     if (this.menu.isOpen()) {
       this.menu.close('first');
+      //test
     }
   }
 }
