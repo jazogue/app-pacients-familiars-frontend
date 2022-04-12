@@ -1,0 +1,12 @@
+{
+  "ROOMS": "Salas de espera virtuales",
+  "ROOM_EMER": "Sala de espera de urgencias",
+  "ROOM_SURG": "Sala de espera quirurgica",
+  "TRACK_CODE": "Ingrese el número de seguimiento del paciente",
+  "LEGAL_TERMS": "Acepto los términos y condiciones legales",
+  "MENU": "Menú",
+  "LEGAL_COND": "Condiciones legales",
+  "CONTACT": "Contacto",
+  "IDIOM": "Idioma",
+  "SEARCH": "Buscar"
+}

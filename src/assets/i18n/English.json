@@ -1,0 +1,12 @@
+{
+  "ROOMS": "Virtual waiting rooms",
+  "ROOM_EMER": "Emergency waiting room",
+  "ROOM_SURG": "Surgical waiting room",
+  "TRACK_CODE": "Enter the patient tracking number",
+  "LEGAL_TERMS": "I accept the legal terms and conditions",
+  "MENU": "Menu",
+  "LEGAL_COND": "Legal conditions",
+  "CONTACT": "Contact",
+  "IDIOM": "Idiom",
+  "SEARCH": "Search"
+}

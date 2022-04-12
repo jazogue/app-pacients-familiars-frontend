@@ -8,13 +8,16 @@ import { EmergenciesPageRoutingModule } from './emergencies-routing.module';
 
 import { EmergenciesPage } from './emergencies.page';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EmergenciesPageRoutingModule
+    EmergenciesPageRoutingModule,
+    TranslateModule,
   ],
-  declarations: [EmergenciesPage]
+  declarations: [EmergenciesPage],
 })
 export class EmergenciesPageModule {}
