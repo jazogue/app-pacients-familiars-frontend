@@ -23,6 +23,18 @@ const routes: Routes = [
     path: 'contact',
     loadChildren: () => import('./contact/contact.module').then( m => m.ContactPageModule)
   },
+  {
+    path: 'surgical',
+    loadChildren: () => import('./surgical/surgical.module').then( m => m.SurgicalPageModule)
+  },
+  {
+    path: 'emergencies-tracking',
+    loadChildren: () => import('./emergencies-tracking/emergencies-tracking.module').then( m => m.EmergenciesTrackingPageModule)
+  },
+  {
+    path: 'surgical-tracking',
+    loadChildren: () => import('./surgical-tracking/surgical-tracking.module').then( m => m.SurgicalTrackingPageModule)
+  },
 ];
 
 @NgModule({

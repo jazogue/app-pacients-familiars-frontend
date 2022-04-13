@@ -12,4 +12,8 @@ export class HomePage {
   directToEmergency() {
     this.router.navigate(['/emergencies']);
   }
+
+  directToSurgical() {
+    this.router.navigate(['/surgical']);
+  }
 }

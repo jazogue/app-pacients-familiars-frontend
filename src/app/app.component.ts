@@ -31,6 +31,7 @@ export class AppComponent {
 
   changeLang(event) {
     this.translateService.use(event.detail.value);
+    this.closeTheMenu();
   }
 
   private closeTheMenu() {
