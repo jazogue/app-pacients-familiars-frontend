@@ -26,19 +26,19 @@ export class ApiService {
     );
   }
 
-  getAllPhases(patientId) {
-    return this.http.get('http://localhost:8080/phases/patient/' + patientId);
+  getAllStates(patientId) {
+    return this.http.get('http://localhost:8080/states/patient/' + patientId);
   }
 
-  getNumberNewPhases(patientId) {
+  getNumberNewStates(patientId) {
     return this.http.get(
-      'http://localhost:8080/phases/patient/' + patientId + '/new/int'
+      'http://localhost:8080/states/patient/' + patientId + '/new/int'
     );
   }
 
-  getObjectNewPhases(patientId) {
+  getObjectNewStates(patientId) {
     return this.http.get(
-      'http://localhost:8080/phases/patient/' + patientId + '/new/object'
+      'http://localhost:8080/states/patient/' + patientId + '/new/object'
     );
   }
 }
