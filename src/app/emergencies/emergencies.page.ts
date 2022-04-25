@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { HospitalCareType } from '../enum-hospitalCareType';
 
 @Component({
   selector: 'app-emergencies',
@@ -12,13 +14,20 @@ export class EmergenciesPage implements OnInit {
   constructor(
     public api: ApiService,
     private router: Router,
-    public toastController: ToastController
-  ) {}
+    public toastController: ToastController,
+    public activatedRoute: ActivatedRoute
+  ) {
+    this.hospitalCareType = this.activatedRoute.snapshot.paramMap.get(
+      'hospitalCareType'
+    ) as HospitalCareType;
+  }
 
   ngOnInit() {
     this.checkBox = false;
   }
+
   public patientId: string;
+  public hospitalCareType: HospitalCareType;
   public checkBox: boolean;
   public response: any = [];
 
@@ -41,11 +50,14 @@ export class EmergenciesPage implements OnInit {
       this.response = result;
       found = true;
     });
-    if (this.response.patientId == this.patientId) {
+    if (
+      this.response.patientId == this.patientId &&
+      this.response.hospitalCareType == this.hospitalCareType
+    ) {
       //arreglar necesita dos clicks para lanzarse
       this.router.navigate([
         '/emergencies-tracking',
-        { patientId: this.patientId },
+        { patientId: this.patientId, hospitalCareType: this.hospitalCareType },
       ]);
     } else this.presentToast();
   }

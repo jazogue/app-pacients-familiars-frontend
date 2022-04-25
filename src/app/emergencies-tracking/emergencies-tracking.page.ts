@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { interval, Subscription } from 'rxjs';
+import { HospitalCareType } from '../enum-hospitalCareType';
 
 @Component({
   selector: 'app-emergencies-tracking',
@@ -14,9 +15,13 @@ export class EmergenciesTrackingPage implements OnInit {
   newStatesNumber: any;
   newStatesObject: any = [];
   subscription: Subscription;
+  hospitalCareType: string;
 
   constructor(public api: ApiService, public activatedRoute: ActivatedRoute) {
     this.patientId = this.activatedRoute.snapshot.paramMap.get('patientId');
+    this.hospitalCareType = this.activatedRoute.snapshot.paramMap.get(
+      'hospitalCareType'
+    ) as HospitalCareType;
   }
 
   ngOnInit() {

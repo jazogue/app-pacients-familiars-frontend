@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { HospitalCareType } from '../enum-hospitalCareType';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +11,16 @@ export class HomePage {
   constructor(private router: Router) {}
 
   directToEmergency() {
-    this.router.navigate(['/emergencies']);
+    this.router.navigate([
+      '/emergencies',
+      { hospitalCareType: HospitalCareType.urgencies },
+    ]);
   }
 
   directToSurgical() {
-    this.router.navigate(['/surgical']);
+    this.router.navigate([
+      '/emergencies',
+      { hospitalCareType: HospitalCareType.quirurgic },
+    ]);
   }
 }
