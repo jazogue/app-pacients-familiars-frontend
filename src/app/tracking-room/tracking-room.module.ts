@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EmergenciesTrackingPageRoutingModule } from './emergencies-tracking-routing.module';
+import { TrackingRoomPageRoutingModule } from './tracking-room-routing.module';
 
-import { EmergenciesTrackingPage } from './emergencies-tracking.page';
+import { TrackingRoomPage } from './tracking-room.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EmergenciesTrackingPageRoutingModule
+    TrackingRoomPageRoutingModule,
   ],
-  declarations: [EmergenciesTrackingPage]
+  declarations: [TrackingRoomPage],
 })
 export class EmergenciesTrackingPageModule {}

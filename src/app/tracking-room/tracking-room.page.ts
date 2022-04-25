@@ -6,10 +6,10 @@ import { HospitalCareType } from '../enum-hospitalCareType';
 
 @Component({
   selector: 'app-emergencies-tracking',
-  templateUrl: './emergencies-tracking.page.html',
-  styleUrls: ['./emergencies-tracking.page.scss'],
+  templateUrl: './tracking-room.page.html',
+  styleUrls: ['./tracking-room.page.scss'],
 })
-export class EmergenciesTrackingPage implements OnInit {
+export class TrackingRoomPage implements OnInit {
   patientId: string = '';
   initialStates: any;
   newStatesNumber: any;

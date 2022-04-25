@@ -12,14 +12,14 @@ export class HomePage {
 
   directToEmergency() {
     this.router.navigate([
-      '/emergencies',
+      '/search-patient',
       { hospitalCareType: HospitalCareType.urgencies },
     ]);
   }
 
   directToSurgical() {
     this.router.navigate([
-      '/emergencies',
+      '/search-patient',
       { hospitalCareType: HospitalCareType.quirurgic },
     ]);
   }

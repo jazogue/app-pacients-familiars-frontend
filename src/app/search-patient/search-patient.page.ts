@@ -7,10 +7,10 @@ import { HospitalCareType } from '../enum-hospitalCareType';
 
 @Component({
   selector: 'app-emergencies',
-  templateUrl: './emergencies.page.html',
-  styleUrls: ['./emergencies.page.scss'],
+  templateUrl: './search-patient.page.html',
+  styleUrls: ['./search-patient.page.scss'],
 })
-export class EmergenciesPage implements OnInit {
+export class SearchPatientPage implements OnInit {
   constructor(
     public api: ApiService,
     private router: Router,
@@ -56,7 +56,7 @@ export class EmergenciesPage implements OnInit {
     ) {
       //arreglar necesita dos clicks para lanzarse
       this.router.navigate([
-        '/emergencies-tracking',
+        '/tracking-room',
         { patientId: this.patientId, hospitalCareType: this.hospitalCareType },
       ]);
     } else this.presentToast();
