@@ -8,5 +8,7 @@
   "LEGAL_COND": "Condiciones legales",
   "CONTACT": "Contacto",
   "IDIOM": "Idioma",
-  "SEARCH": "Buscar"
+  "SEARCH": "Buscar",
+  "LOADING_STATES": "Cargando estados del paciente...",
+  "ERROR_SEARCH": "Este paciente no existe o se introdujo de forma incorrecta"
 }

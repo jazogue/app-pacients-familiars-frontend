@@ -8,8 +8,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="getNewStates()">dadadas</ion-button>
+  <ion-button (click)="getForcedNewStates()">
+    <img src="assets/img/reload.png" width="40px" />
+  </ion-button>
   <ion-card *ngFor="let iniState of initialStates">
-    {{iniState.stateName}}
+    {{iniState.startTime | date:'hh:mm'}}: {{iniState.stateName}}
   </ion-card>
 </ion-content>

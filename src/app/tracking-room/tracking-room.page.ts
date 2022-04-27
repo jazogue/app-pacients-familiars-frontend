@@ -3,6 +3,9 @@ import { ApiService } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { interval, Subscription } from 'rxjs';
 import { HospitalCareType } from '../enum-hospitalCareType';
+import { LoadingController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
+//import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-emergencies-tracking',
@@ -11,13 +14,20 @@ import { HospitalCareType } from '../enum-hospitalCareType';
 })
 export class TrackingRoomPage implements OnInit {
   patientId: string = '';
-  initialStates: any;
-  newStatesNumber: any;
-  newStatesObject: any = [];
-  subscription: Subscription;
   hospitalCareType: string;
+  initialStates: any = [];
+  newStatesObject: any = [];
+  newStatesNumber: any;
+  subscription: Subscription;
+  reloadingCount: number;
 
-  constructor(public api: ApiService, public activatedRoute: ActivatedRoute) {
+  constructor(
+    public api: ApiService,
+    public activatedRoute: ActivatedRoute,
+    public loadingController: LoadingController,
+    //public toastController: ToastController,
+    public translateService: TranslateService
+  ) {
     this.patientId = this.activatedRoute.snapshot.paramMap.get('patientId');
     this.hospitalCareType = this.activatedRoute.snapshot.paramMap.get(
       'hospitalCareType'
@@ -26,15 +36,11 @@ export class TrackingRoomPage implements OnInit {
 
   ngOnInit() {
     this.api.getAllStates(this.patientId).subscribe((result) => {
-      this.initialStates = result;
+      this.initialStates = this.translateAllStates(result);
     });
 
     const source = interval(2000);
     this.subscription = source.subscribe((val) => this.getNewStates());
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
   getNewStates() {
@@ -44,11 +50,32 @@ export class TrackingRoomPage implements OnInit {
     this.newStatesNumber =
       this.newStatesObject.length - this.initialStates.length;
 
-    if (this.newStatesNumber > 0) this.addNewStates();
+    if (this.newStatesNumber > 0) {
+      this.addNewStates();
+      return true;
+    } else return false;
+  }
+  /*
+  getForcedNewStates() {
+    if (this.getNewStates() == false) {
+      this.reloadingCount++;
+    } else {
+      this.reloadingCount = 0;
+      this.notFoundNewStatesToast();
+    }
+    if (this.reloadingCount == 10) {
+      this.reloadingCount = 0;
+    }
+  }
+  */
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   private addNewStates() {
     var found = false;
+
     for (
       let i = 0;
       i < this.newStatesObject.length && this.newStatesNumber > 0;
@@ -65,15 +92,56 @@ export class TrackingRoomPage implements OnInit {
         }
       }
       if (!found) {
-        this.initialStates.push(this.newStatesObject[i]);
+        this.initialStates.push(this.translateState(this.newStatesObject[i]));
         this.newStatesNumber--;
       }
       found = false;
     }
+
     this.initialStates.sort((a, b) => {
       if (a.startTime < b.startTime) return -1;
       else if (a.startTime > b.startTime) return 1;
       else return 0;
     });
   }
+
+  private translateAllStates(states) {
+    var translatedStates: any = states;
+
+    this.presentLoadingWithOptions();
+    this.api.getAllTranslations(states, 'ca').subscribe((result: any) => {
+      for (let i = 0; i < states.length; i++) {
+        translatedStates[i].stateName =
+          result.data.translations[i].translatedText;
+      }
+      this.loadingController.dismiss();
+    });
+    return translatedStates;
+  }
+
+  private translateState(text) {
+    this.api.getTranslation(text.stateName, 'ca').subscribe((result: any) => {
+      text.stateName = result.data.translations[0].translatedText;
+    });
+    return text;
+  }
+
+  private async presentLoadingWithOptions() {
+    var loading = await this.loadingController.create({
+      message: this.translateService.instant('LOADING_STATES'),
+      spinner: 'bubbles',
+    });
+    return await loading.present();
+  }
+
+  /*
+  async notFoundNewStatesToast() {
+    const toast = await this.toastController.create({
+      message: 'No hay nuevos estados',
+      duration: 2000,
+      position: 'middle',
+    });
+    toast.present();
+  }
+  */
 }

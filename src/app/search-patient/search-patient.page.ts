@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { HospitalCareType } from '../enum-hospitalCareType';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-emergencies',
@@ -15,7 +16,8 @@ export class SearchPatientPage implements OnInit {
     public api: ApiService,
     private router: Router,
     public toastController: ToastController,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    public translateService: TranslateService
   ) {
     this.hospitalCareType = this.activatedRoute.snapshot.paramMap.get(
       'hospitalCareType'
@@ -24,10 +26,17 @@ export class SearchPatientPage implements OnInit {
 
   ngOnInit() {
     this.checkBox = false;
+
+    if (this.hospitalCareType == HospitalCareType.quirurgic) {
+      this.hospitalCareTypeText = 'ROOM_SURG';
+    } else {
+      this.hospitalCareTypeText = 'ROOM_EMER';
+    }
   }
 
   public patientId: string;
   public hospitalCareType: HospitalCareType;
+  public hospitalCareTypeText: string;
   public checkBox: boolean;
   public response: any = [];
 
@@ -64,7 +73,7 @@ export class SearchPatientPage implements OnInit {
 
   async presentToast() {
     const toast = await this.toastController.create({
-      message: 'Este paciente no existe o se introdujo de forma incorrecta',
+      message: this.translateService.instant('ERROR_SEARCH'),
       duration: 2000,
       position: 'middle',
     });
