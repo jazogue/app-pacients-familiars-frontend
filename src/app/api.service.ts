@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
   constructor(public http: HttpClient) {}
+  private apiKey: string = 'AIzaSyCo3vh6kzsSbmlSRKHqXazSFbAqrmMgi28';
 
-  getPatient(patientId) {
+  getPatient(patientId): Observable<any> {
     return this.http.get('http://localhost:8080/patient/' + patientId).pipe(
       catchError((error) => {
         if (error.status === 404) return [];
@@ -34,14 +36,16 @@ export class ApiService {
 
   getTranslation(text, idiom) {
     return this.http.post(
-      'https://translation.googleapis.com/language/translate/v2?key=' + '',
-      JSON.parse('{ "q": ["' + text + '"], "target": "' + idiom + '" }') //ca, es, en
+      'https://translation.googleapis.com/language/translate/v2?key=' +
+        this.apiKey,
+      JSON.parse('{ "q": ["' + text + '"], "target": "' + idiom + '" }')
     );
   }
 
   getAllTranslations(states, idiom) {
     return this.http.post(
-      'https://translation.googleapis.com/language/translate/v2?key=' + '',
+      'https://translation.googleapis.com/language/translate/v2?key=' +
+        this.apiKey,
       JSON.parse(
         '{ "q": ' +
           this.prepareJsonAllTranslations(states) +

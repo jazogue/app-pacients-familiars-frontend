@@ -10,5 +10,7 @@
   "IDIOM": "Idioma",
   "SEARCH": "Buscar",
   "LOADING_STATES": "Cargando estados del paciente...",
-  "ERROR_SEARCH": "Este paciente no existe o se introdujo de forma incorrecta"
+  "ERROR_SEARCH": "Este paciente no existe o se introdujo de forma incorrecta",
+  "LANGUAGE": "es",
+  "LAST_STATE": "Llévame al último estado"
 }

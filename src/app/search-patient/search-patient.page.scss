@@ -1,9 +1,32 @@
+ion-header {
+  ion-toolbar,
+  ion-item {
+    --background: #ffffff;
+    background: #ffffff;
+    padding: 0 10px;
+  }
+  ion-title {
+    text-align: center;
+  }
+}
+
 ion-grid {
   height: 100%;
 }
 ion-row {
-  display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
+}
+
+ion-card {
+  box-shadow: none !important;
+}
+.searchButton {
+  --border-radius: 0px;
+  text-transform: none;
+}
+
+ion-input {
+  --placeholder-color: black;
 }

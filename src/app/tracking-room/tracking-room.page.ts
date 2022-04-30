@@ -5,7 +5,9 @@ import { interval, Subscription } from 'rxjs';
 import { HospitalCareType } from '../enum-hospitalCareType';
 import { LoadingController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-//import { ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
+import { ViewChild } from '@angular/core';
+import { IonContent } from '@ionic/angular';
 
 @Component({
   selector: 'app-emergencies-tracking',
@@ -19,13 +21,14 @@ export class TrackingRoomPage implements OnInit {
   newStatesObject: any = [];
   newStatesNumber: any;
   subscription: Subscription;
-  reloadingCount: number;
+  idiom: string;
+  @ViewChild(IonContent, { static: true }) content: IonContent;
 
   constructor(
     public api: ApiService,
     public activatedRoute: ActivatedRoute,
     public loadingController: LoadingController,
-    //public toastController: ToastController,
+    public toastController: ToastController,
     public translateService: TranslateService
   ) {
     this.patientId = this.activatedRoute.snapshot.paramMap.get('patientId');
@@ -35,39 +38,36 @@ export class TrackingRoomPage implements OnInit {
   }
 
   ngOnInit() {
+    this.idiom = this.translateService.instant('LANGUAGE');
     this.api.getAllStates(this.patientId).subscribe((result) => {
       this.initialStates = this.translateAllStates(result);
     });
 
     const source = interval(2000);
-    this.subscription = source.subscribe((val) => this.getNewStates());
+    this.subscription = source.subscribe((val) => this.updateStates());
   }
 
-  getNewStates() {
-    this.api.getAllStates(this.patientId).subscribe((result) => {
-      this.newStatesObject = result;
-    });
-    this.newStatesNumber =
-      this.newStatesObject.length - this.initialStates.length;
+  updateStates() {
+    if (this.idiom == this.translateService.instant('LANGUAGE')) {
+      this.api.getAllStates(this.patientId).subscribe((result) => {
+        this.newStatesObject = result;
+      });
+      this.newStatesNumber =
+        this.newStatesObject.length - this.initialStates.length;
 
-    if (this.newStatesNumber > 0) {
-      this.addNewStates();
-      return true;
-    } else return false;
-  }
-  /*
-  getForcedNewStates() {
-    if (this.getNewStates() == false) {
-      this.reloadingCount++;
+      if (this.newStatesNumber > 0) {
+        this.addNewStates();
+        this.foundNewStatesToast();
+      }
     } else {
-      this.reloadingCount = 0;
-      this.notFoundNewStatesToast();
-    }
-    if (this.reloadingCount == 10) {
-      this.reloadingCount = 0;
+      this.api.getAllStates(this.patientId).subscribe((result) => {
+        let translatedStates = this.translateAllStates(result);
+        this.initialStates = translatedStates;
+        this.newStatesObject = translatedStates;
+      });
+      this.idiom = this.translateService.instant('LANGUAGE');
     }
   }
-  */
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -109,20 +109,25 @@ export class TrackingRoomPage implements OnInit {
     var translatedStates: any = states;
 
     this.presentLoadingWithOptions();
-    this.api.getAllTranslations(states, 'ca').subscribe((result: any) => {
-      for (let i = 0; i < states.length; i++) {
-        translatedStates[i].stateName =
-          result.data.translations[i].translatedText;
-      }
-      this.loadingController.dismiss();
-    });
+    this.api
+      .getAllTranslations(states, this.translateService.instant('LANGUAGE'))
+      .subscribe((result: any) => {
+        for (let i = 0; i < states.length; i++) {
+          translatedStates[i].stateName =
+            result.data.translations[i].translatedText;
+        }
+        this.loadingController.dismiss();
+      });
+
     return translatedStates;
   }
 
   private translateState(text) {
-    this.api.getTranslation(text.stateName, 'ca').subscribe((result: any) => {
-      text.stateName = result.data.translations[0].translatedText;
-    });
+    this.api
+      .getTranslation(text.stateName, this.translateService.instant('LANGUAGE'))
+      .subscribe((result: any) => {
+        text.stateName = result.data.translations[0].translatedText;
+      });
     return text;
   }
 
@@ -134,8 +139,16 @@ export class TrackingRoomPage implements OnInit {
     return await loading.present();
   }
 
-  /*
-  async notFoundNewStatesToast() {
+  private async foundNewStatesToast() {
+    const toast = await this.toastController.create({
+      message: 'Nuevo estado',
+      duration: 1000,
+      position: 'middle',
+    });
+    toast.present();
+  }
+
+  private async notFoundNewStatesToast() {
     const toast = await this.toastController.create({
       message: 'No hay nuevos estados',
       duration: 2000,
@@ -143,5 +156,8 @@ export class TrackingRoomPage implements OnInit {
     });
     toast.present();
   }
-  */
+
+  goToTheLastState() {
+    this.content.scrollToBottom(1000);
+  }
 }

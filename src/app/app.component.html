@@ -6,12 +6,12 @@
     class="my-custom-menu"
   >
     <ion-header>
-      <ion-toolbar color="primary">
+      <ion-toolbar>
         <ion-title>{{ "MENU" | translate }}</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-list lines="none">
+      <ion-list class="menuOptions" lines="none">
         <ion-item (click)="goToLegalConditions()">
           <img src="assets/img/policy.png" width="40px" />
           <ion-label>{{ "LEGAL_COND" | translate }}</ion-label></ion-item

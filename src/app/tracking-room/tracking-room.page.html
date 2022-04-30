@@ -1,17 +1,32 @@
-<ion-header>
+<ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button (click)="ngOnDestroy()"></ion-back-button>
     </ion-buttons>
-    <ion-title>emergencies-tracking </ion-title>
+    <ion-title>
+      <img src="assets/img/top_bar2.png" width="50px" class="top-bar" />
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-button (click)="getForcedNewStates()">
-    <img src="assets/img/reload.png" width="40px" />
+<ion-content class="tracking" [scrollEvents]="true">
+  <ion-button
+    class="goToTheLastStateButton"
+    size="medium"
+    color="primary-color"
+    fill="outline"
+    (click)="goToTheLastState()"
+  >
+    {{ "LAST_STATE" | translate }}
+    <ion-icon slot="start" name="arrow-down-outline"></ion-icon>
   </ion-button>
-  <ion-card *ngFor="let iniState of initialStates">
-    {{iniState.startTime | date:'hh:mm'}}: {{iniState.stateName}}
+  <ion-card *ngFor="let iniState of initialStates" class="card-center">
+    <ion-card-content>
+      <h3>{{iniState.stateName}}</h3>
+      <h5>{{iniState.startTime | date:'hh:mm'}}</h5>
+    </ion-card-content>
   </ion-card>
 </ion-content>

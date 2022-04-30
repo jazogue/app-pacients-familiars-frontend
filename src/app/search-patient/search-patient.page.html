@@ -1,19 +1,21 @@
-<ion-header>
+<ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>emergencies</ion-title>
+    <ion-title>
+      <img src="assets/img/top_bar2.png" width="50px" class="top-bar" />
+    </ion-title>
     <ion-buttons slot="end">
       <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
   <ion-grid class="ion-text-center">
     <ion-row>
-      <ion-card>
+      <ion-card class="content-card">
         <ion-card-content>
           <ion-text color="dark">
             <h1>{{ hospitalCareTypeText | translate}}</h1>
@@ -26,7 +28,6 @@
             <ion-input
               type="text"
               [(ngModel)]="patientId"
-              text-right
               id="input"
             ></ion-input>
           </ion-item>
@@ -36,13 +37,16 @@
           <br />
           <br />
           <ion-button
+            class="searchButton"
             [disabled]="checkButton()"
             size="medium"
-            color="secondary"
+            color="primary-color"
+            fill="outline"
             (click)="directToEmergencyTracking()"
           >
-            <ion-icon slot="start" name="search"></ion-icon>
             {{ "SEARCH" | translate }}
+            <ion-icon slot="start" name="search"></ion-icon>
+            <ion-icon slot="end" name="chevron-forward"></ion-icon>
           </ion-button>
         </ion-card-content>
       </ion-card>

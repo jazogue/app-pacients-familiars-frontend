@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { HospitalCareType } from '../enum-hospitalCareType';
 import { TranslateService } from '@ngx-translate/core';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-emergencies',
@@ -17,6 +18,7 @@ export class SearchPatientPage implements OnInit {
     private router: Router,
     public toastController: ToastController,
     public activatedRoute: ActivatedRoute,
+    public loadingController: LoadingController,
     public translateService: TranslateService
   ) {
     this.hospitalCareType = this.activatedRoute.snapshot.paramMap.get(
@@ -38,7 +40,8 @@ export class SearchPatientPage implements OnInit {
   public hospitalCareType: HospitalCareType;
   public hospitalCareTypeText: string;
   public checkBox: boolean;
-  public response: any = [];
+  public response: any = null;
+  filtersLoaded: Promise<boolean>;
 
   isChecked(event) {
     if (event.currentTarget.checked) this.checkBox = true;
@@ -54,21 +57,25 @@ export class SearchPatientPage implements OnInit {
   }
 
   directToEmergencyTracking() {
-    var found = false;
     this.api.getPatient(this.patientId).subscribe((result) => {
       this.response = result;
-      found = true;
     });
+
     if (
       this.response.patientId == this.patientId &&
       this.response.hospitalCareType == this.hospitalCareType
     ) {
-      //arreglar necesita dos clicks para lanzarse
       this.router.navigate([
         '/tracking-room',
-        { patientId: this.patientId, hospitalCareType: this.hospitalCareType },
+        {
+          patientId: this.patientId,
+          hospitalCareType: this.hospitalCareType,
+        },
       ]);
-    } else this.presentToast();
+    } else {
+      this.presentToast();
+      this.response = null;
+    }
   }
 
   async presentToast() {
@@ -78,5 +85,13 @@ export class SearchPatientPage implements OnInit {
       position: 'middle',
     });
     toast.present();
+  }
+
+  private async presentLoadingSearchingPatient() {
+    var loading = await this.loadingController.create({
+      message: this.translateService.instant('LOADING_STATES'),
+      spinner: 'bubbles',
+    });
+    return await loading.present();
   }
 }

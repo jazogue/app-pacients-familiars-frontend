@@ -1,5 +1,10 @@
-.my-custom-menu .image::after {
-  color: aqua;
+ion-header {
+  ion-toolbar,
+  ion-item {
+    --background: #ffffff;
+    background: #ffffff;
+    padding: 0 10px;
+  }
 }
 
 ion-menu ion-toolbar {
@@ -14,4 +19,11 @@ ion-menu ion-label {
 ion-select {
   position: absolute;
   left: 130px;
+}
+
+.menuOptions {
+  margin-top: 20px;
+  .item {
+    margin-bottom: 10px;
+  }
 }

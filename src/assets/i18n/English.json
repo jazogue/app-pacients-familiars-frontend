@@ -10,5 +10,7 @@
   "IDIOM": "Idiom",
   "SEARCH": "Search",
   "LOADING_STATES": "Loading patient states...",
-  "ERROR_SEARCH": "This patient does not exist or was entered incorrectly"
+  "ERROR_SEARCH": "This patient does not exist or was entered incorrectly",
+  "LANGUAGE": "en",
+  "LAST_STATE": "Take me to the last state"
 }
