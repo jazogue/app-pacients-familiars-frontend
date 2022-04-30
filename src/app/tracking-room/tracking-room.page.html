@@ -12,7 +12,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="tracking" [scrollEvents]="true">
+<ion-content [scrollEvents]="true">
   <ion-button
     class="goToTheLastStateButton"
     size="medium"
@@ -23,10 +23,19 @@
     {{ "LAST_STATE" | translate }}
     <ion-icon slot="start" name="arrow-down-outline"></ion-icon>
   </ion-button>
-  <ion-card *ngFor="let iniState of initialStates" class="card-center">
+  <ion-card
+    *ngFor="let iniState of initialStates; let last = last;"
+    class="card-center"
+  >
     <ion-card-content>
-      <h3>{{iniState.stateName}}</h3>
-      <h5>{{iniState.startTime | date:'hh:mm'}}</h5>
+      <div *ngIf="last">
+        <strong>{{iniState.stateName}}</strong>
+        <h5>{{iniState.startTime | date:'hh:mm'}}</h5>
+      </div>
+      <div *ngIf="!last">
+        <h2>{{iniState.stateName}}</h2>
+        <h5>{{iniState.startTime | date:'hh:mm'}}</h5>
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

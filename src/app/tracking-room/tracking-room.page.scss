@@ -27,18 +27,15 @@ ion-header {
   text-transform: none;
 }
 
-.tracking {
-  ion-card {
-    background-color: rgb(255, 255, 255);
-    margin-right: 30px;
-    margin-left: 30px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    font-size: 20px;
-    line-height: 26px;
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    ion-text {
-      margin-top: 10px;
-    }
+ion-card {
+  background-color: rgb(255, 255, 255);
+  margin-right: 30px;
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  line-height: 26px;
+  h5 {
+    text-align: right;
   }
 }
