@@ -27,7 +27,7 @@
             interface="popover"
             width="50px"
             (ionChange)="changeLang($event)"
-            value="English"
+            [value]="getLanguage()"
           >
             <ion-select-option *ngFor="let lang of langs">{{
               lang

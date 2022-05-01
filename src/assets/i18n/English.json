@@ -17,5 +17,6 @@
   "WELCOME": "Welcome to the surgical and emergency follow-up application",
   "SKIP_INTRO": "Skip the intro",
   "END_INTRO": "End the intro",
-  "INTRO": "This application allows you to know the status of a family member who receives a surgical intervention or emergency care at the Mataró Hospital instantly."
+  "INTRO": "This application allows you to know the status of a family member who receives a surgical intervention or emergency care at the Mataró Hospital instantly.",
+  "LONG_LANGUAGE": "English"
 }

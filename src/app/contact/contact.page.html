@@ -1,13 +1,31 @@
-<ion-header>
+<ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button (click)="directToHome()"></ion-back-button>
+      <ion-back-button (click)="ngOnDestroy()"></ion-back-button>
     </ion-buttons>
-    <ion-title>contact</ion-title>
+    <ion-title>
+      <img src="assets/img/top_bar2.png" width="50px" />
+    </ion-title>
     <ion-buttons slot="end">
       <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content padding>
+  <ion-card>
+    <ion-item>
+      <ion-label>Contacto</ion-label>
+    </ion-item>
+    <ion-card-content>
+      <ion-item>
+        <ion-text>
+          <h3>Dirección:</h3>
+          <h4>Carr. de Cirera, 230, 08304 Mataró, Barcelona</h4>
+          <h3>Teléfono:</h3>
+          <h4>+34 937 41 77 00</h4>
+        </ion-text>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

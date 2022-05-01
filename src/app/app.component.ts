@@ -32,6 +32,10 @@ export class AppComponent {
     this.closeTheMenu();
   }
 
+  getLanguage() {
+    return this.translateService.instant('LONG_LANGUAGE').toString();
+  }
+
   private closeTheMenu() {
     if (this.menu.isOpen()) {
       this.menu.close('first');
