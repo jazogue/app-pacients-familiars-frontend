@@ -21,7 +21,6 @@ export class WelcomePagePage implements OnInit {
 
   ngOnInit() {
     const checkView = localStorage.getItem('pageDisplayed');
-
     if (checkView) {
       this.router.navigate(['/home']);
     }

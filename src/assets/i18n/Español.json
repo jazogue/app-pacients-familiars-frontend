@@ -14,9 +14,9 @@
   "LANGUAGE": "es",
   "LAST_STATE": "Llévame al último estado",
   "SELECT_IDIOM": "Seleccione un idioma",
-  "WELCOME": "Bienvenido a la aplicación de seguimiento quirúrgico y de urgencias",
+  "WELCOME": "Bienvenido/da a la aplicación de seguimiento quirúrgico y de urgencias",
   "SKIP_INTRO": "Saltar la introducción",
   "END_INTRO": "Terminar la introducción",
-  "INTRO": "Esta aplicación permite conocer el estado de un familiar que recibe una intervención quirúrgica o atención de urgencia en el Hospital de Mataró al instante.",
+  "INTRO": "La aplicación permite conocer el estado de un familiar que recibe una intervención quirúrgica o atención de urgencia en el Hospital de Mataró al instante.",
   "LONG_LANGUAGE": "Español"
 }
