@@ -13,7 +13,9 @@
       <ion-row>
         <ion-col>
           <img src="assets/img/waiting-room.png" width="50px" />
-          <h1 color="primary-color">{{ "ROOMS" | translate }}</h1>
+          <ion-text>
+            <h1>{{ "ROOMS" | translate }}</h1>
+          </ion-text>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -21,12 +23,11 @@
           <ion-button
             expand="block"
             class="room-surg-bottons"
-            color="primary-color"
             (click)="directToEmergency()"
             fill="outline"
           >
             <ion-label>
-              <ion-text color="primary">
+              <ion-text>
                 <h2>{{ "ROOM_EMER" | translate }}</h2>
               </ion-text>
             </ion-label>
@@ -37,12 +38,11 @@
           <ion-button
             expand="block"
             class="room-surg-bottons"
-            color="primary-color"
             (click)="directToSurgical()"
             fill="outline"
           >
             <ion-label
-              ><ion-text color="primary">
+              ><ion-text>
                 <h2>{{ "ROOM_SURG" | translate }}</h2>
               </ion-text>
             </ion-label>

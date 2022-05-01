@@ -12,5 +12,10 @@
   "LOADING_STATES": "Loading patient states...",
   "ERROR_SEARCH": "This patient does not exist or was entered incorrectly",
   "LANGUAGE": "en",
-  "LAST_STATE": "Take me to the last state"
+  "LAST_STATE": "Take me to the last state",
+  "SELECT_IDIOM": "Select a language",
+  "WELCOME": "Welcome to the surgical and emergency follow-up application",
+  "SKIP_INTRO": "Skip the intro",
+  "END_INTRO": "End the intro",
+  "INTRO": "This application allows you to know the status of a family member who receives a surgical intervention or emergency care at the Mataró Hospital instantly."
 }

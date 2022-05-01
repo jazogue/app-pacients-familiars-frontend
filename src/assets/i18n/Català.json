@@ -12,5 +12,10 @@
   "LOADING_STATES": "Carregant estats del pacient...",
   "ERROR_SEARCH": "Aquest pacient no existeix o es va introduir de manera incorrecta",
   "LANGUAGE": "ca",
-  "LAST_STATE": "Porta'm a l'últim estat"
+  "LAST_STATE": "Porta'm a l'últim estat",
+  "SELECT_IDIOM": "Seleccioni un idioma",
+  "WELCOME": "Benvingut a l'aplicació de seguiment quirúrgic i urgències",
+  "SKIP_INTRO": "Saltar la introducció",
+  "END_INTRO": "Finalitzar la introducció",
+  "INTRO": "Aquesta aplicació permet conèixer l'estat d'un familiar que rebi una intervenció quirúrgica o atenció d'urgències a l'Hospital de Mataró de manera instantània."
 }

@@ -3,13 +3,15 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'welcome-page',
     loadChildren: () =>
-      import('./home/home.module').then((m) => m.HomePageModule),
+      import('./welcome-page/welcome-page.module').then(
+        (m) => m.WelcomePagePageModule
+      ),
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'welcome-page',
     pathMatch: 'full',
   },
   {
@@ -35,6 +37,11 @@ const routes: Routes = [
       import('./tracking-room/tracking-room.module').then(
         (m) => m.EmergenciesTrackingPageModule
       ),
+  },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./home/home.module').then((m) => m.HomePageModule),
   },
 ];
 

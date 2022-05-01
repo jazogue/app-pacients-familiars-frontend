@@ -1,0 +1,52 @@
+<ion-content>
+  <ion-slides pager="true">
+    <ion-slide>
+      <ion-card>
+        <img src="assets/img/top_bar.png" width="50px" />
+        <ion-text color="primary">
+          <h3>{{ "WELCOME" | translate }}</h3>
+        </ion-text>
+        <h5>{{ "SELECT_IDIOM" | translate }}:</h5>
+        <ion-select
+          interface="popover"
+          width="50px"
+          (ionChange)="changeLang($event)"
+          value="Català"
+          class="langSelector"
+          color="primary"
+        >
+          <ion-select-option *ngFor="let lang of langs"
+            >{{ lang }}</ion-select-option
+          >
+        </ion-select>
+        <img src="assets/img/first-slide.png" width="70px" />
+
+        <ion-button color="primary-color" (click)="directToHome()" fill="clear">
+          <ion-label>
+            <h5>{{ "SKIP_INTRO" | translate }}</h5>
+          </ion-label>
+          <ion-icon slot="end" name="chevron-forward"></ion-icon>
+        </ion-button>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card>
+        <img src="assets/img/top_bar.png" width="70px" class="top-bar" />
+        <ion-text color="primary">
+          <h5>{{ "INTRO" | translate }}</h5>
+        </ion-text>
+        <img src="assets/img/second-slide.png" width="100px" />
+        <ion-button
+          color="primary-color"
+          (click)="directToHome()"
+          fill="outline"
+        >
+          <ion-label>
+            <h2>{{ "END_INTRO" | translate }}</h2>
+          </ion-label>
+          <ion-icon slot="end" name="chevron-forward"></ion-icon>
+        </ion-button>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
