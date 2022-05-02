@@ -13,29 +13,35 @@
 </ion-header>
 
 <ion-content [scrollEvents]="true">
-  <ion-button
-    class="goToTheLastStateButton"
-    size="medium"
-    color="primary-color"
-    fill="outline"
-    (click)="goToTheLastState()"
-  >
-    {{ "LAST_STATE" | translate }}
-    <ion-icon slot="start" name="arrow-down-outline"></ion-icon>
-  </ion-button>
+  <ion-list style="text-align: center">
+    <ion-button
+      class="goToTheLastStateButton"
+      size="medium"
+      color="primary-color"
+      fill="outline"
+      (click)="goToTheLastState()"
+    >
+      {{ "LAST_STATE" | translate }}
+      <ion-icon slot="start" name="arrow-down-outline"></ion-icon>
+    </ion-button>
+  </ion-list>
   <ion-card
     *ngFor="let iniState of initialStates; let last = last;"
     class="card-center"
   >
-    <ion-card-content>
-      <div *ngIf="last">
-        <strong>{{iniState.stateName}}</strong>
-        <h5>{{iniState.startTime | date:'hh:mm'}}</h5>
+    <div *ngIf="last">
+      <div [ngStyle]="{'color': 'white', 'background': '#3e4a74'}">
+        <ion-card-content>
+          <h2><strong>{{iniState.stateName}}</strong></h2>
+          <h5>{{iniState.startTime | date:'hh:mm'}}</h5>
+        </ion-card-content>
       </div>
-      <div *ngIf="!last">
+    </div>
+    <div *ngIf="!last">
+      <ion-card-content>
         <h2>{{iniState.stateName}}</h2>
         <h5>{{iniState.startTime | date:'hh:mm'}}</h5>
-      </div>
-    </ion-card-content>
+      </ion-card-content>
+    </div>
   </ion-card>
 </ion-content>

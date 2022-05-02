@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { IonSelect } from '@ionic/angular';
 
 @Component({
   selector: 'app-welcome-page',
@@ -14,6 +15,7 @@ export class WelcomePagePage implements OnInit {
   ) {}
 
   langs: string[] = [];
+  @ViewChild('langSelector') select: IonSelect;
 
   ngOnInit() {
     this.translateService.setDefaultLang('Català');
