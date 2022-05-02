@@ -28,5 +28,12 @@ ion-card {
 }
 
 ion-input {
-  --placeholder-color: black;
+  --placeholder-color: var(--ion-color-primary);
+  color: var(--ion-color-primary);
+  caret-color: var(--ion-color-secondary);
+}
+
+.underline {
+  --border-color: var(--ion-color-primary);
+  --highlight-background: var(--ion-color-secondary);
 }

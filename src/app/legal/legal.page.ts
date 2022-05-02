@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-legal',
@@ -7,11 +9,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./legal.page.scss'],
 })
 export class LegalPage implements OnInit {
-  constructor(private router: Router) {}
+  goMenu: boolean;
 
-  ngOnInit() {}
+  constructor(
+    private router: Router,
+    public activatedRoute: ActivatedRoute,
+    private location: Location
+  ) {}
 
-  directToHome() {
-    this.router.navigate(['/home']);
+  ngOnInit() {
+    this.goMenu =
+      this.activatedRoute.snapshot.paramMap.get('goMenu') === 'true';
+  }
+
+  goBackButton() {
+    if (!this.goMenu) this.router.navigate(['/home']);
+    else this.location.back();
   }
 }

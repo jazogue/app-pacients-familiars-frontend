@@ -108,7 +108,7 @@ export class TrackingRoomPage implements OnInit {
   private translateAllStates(states) {
     var translatedStates: any = states;
 
-    this.presentLoadingWithOptions();
+    //this.presentLoadingWithOptions();
     this.api
       .getAllTranslations(states, this.translateService.instant('LANGUAGE'))
       .subscribe((result: any) => {
@@ -116,7 +116,7 @@ export class TrackingRoomPage implements OnInit {
           translatedStates[i].stateName =
             result.data.translations[i].translatedText;
         }
-        this.loadingController.dismiss();
+        //this.loadingController.dismiss();
       });
 
     return translatedStates;

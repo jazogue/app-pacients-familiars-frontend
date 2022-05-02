@@ -19,11 +19,24 @@ export class AppComponent {
     this.langs = this.translateService.getLangs();
   }
   goToLegalConditions() {
-    this.router.navigate(['/legal']);
+    var url: string = this.getUrl();
+
+    if (url != '/legal' && url != '/contact') {
+      this.router.navigate(['/legal', { goMenu: 'true' }]);
+    } else {
+      this.router.navigate(['/legal', { goMenu: 'false' }]);
+    }
     this.closeTheMenu();
   }
+
   goToContactDetails() {
-    this.router.navigate(['/contact']);
+    var url: string = this.getUrl();
+
+    if (url != '/legal' && url != '/contact') {
+      this.router.navigate(['/contact', { goMenu: 'true' }]);
+    } else {
+      this.router.navigate(['/contact', { goMenu: 'false' }]);
+    }
     this.closeTheMenu();
   }
 
@@ -34,6 +47,13 @@ export class AppComponent {
 
   getLanguage() {
     return this.translateService.instant('LONG_LANGUAGE').toString();
+  }
+
+  private getUrl() {
+    if (this.router.url.indexOf(';') != -1) {
+      return this.router.url.substring(0, this.router.url.indexOf(';'));
+    }
+    return this.router.url;
   }
 
   private closeTheMenu() {

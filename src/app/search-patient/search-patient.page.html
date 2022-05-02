@@ -24,7 +24,7 @@
           <ion-text color="dark">
             <h5>{{ "TRACK_CODE" | translate }}</h5>
           </ion-text>
-          <ion-item>
+          <ion-item class="underline">
             <ion-input
               type="text"
               [(ngModel)]="patientId"
@@ -32,13 +32,26 @@
             ></ion-input>
           </ion-item>
           <br />
-          <ion-col size="12"> {{ "LEGAL_TERMS" | translate }} </ion-col>
-          <ion-checkbox (ionChange)="isChecked($event)"></ion-checkbox>
-          <br />
+          <ion-col>
+            <ion-row>
+              <ion-item lines="none"
+                ><ion-text (click)="directToLegal()"
+                  ><h5>
+                    {{ "LEGAL_TERMS_1" | translate }}
+                    <font color="#5260ff"
+                      >{{ "LEGAL_TERMS_2" | translate }}</font
+                    >
+                  </h5>
+                </ion-text>
+              </ion-item>
+            </ion-row>
+            <ion-row>
+              <ion-checkbox (ionChange)="isChecked($event)"></ion-checkbox>
+            </ion-row>
+          </ion-col>
           <br />
           <ion-button
             class="searchButton"
-            [disabled]="checkButton()"
             size="medium"
             color="primary-color"
             fill="outline"

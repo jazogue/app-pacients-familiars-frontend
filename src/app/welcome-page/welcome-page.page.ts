@@ -11,20 +11,21 @@ export class WelcomePagePage implements OnInit {
   constructor(
     private router: Router,
     public translateService: TranslateService
-  ) {
-    this.translateService.setDefaultLang('Català');
-    this.translateService.addLangs(['Català', 'Español', 'English']);
-    this.langs = this.translateService.getLangs();
-  }
+  ) {}
 
   langs: string[] = [];
 
   ngOnInit() {
+    this.translateService.setDefaultLang('Català');
+    this.translateService.addLangs(['Català', 'Español', 'English']);
+    this.langs = this.translateService.getLangs();
     const checkView = localStorage.getItem('pageDisplayed');
+    /*
     if (checkView) {
       this.router.navigate(['/home']);
     }
-    localStorage.setItem('pageDisplayed', 'Y');
+    localStorage.setItem('pageDisplayed', 'Y');^
+    */
   }
 
   changeLang(event) {

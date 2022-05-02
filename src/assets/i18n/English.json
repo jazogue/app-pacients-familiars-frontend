@@ -3,14 +3,15 @@
   "ROOM_EMER": "Emergency waiting room",
   "ROOM_SURG": "Surgical waiting room",
   "TRACK_CODE": "Enter the patient tracking number",
-  "LEGAL_TERMS": "I accept the legal terms and conditions",
+  "LEGAL_TERMS_1": "I accept the ",
+  "LEGAL_TERMS_2": "legal terms and conditions",
   "MENU": "Menu",
   "LEGAL_COND": "Legal conditions",
   "CONTACT": "Contact",
   "IDIOM": "Idiom",
   "SEARCH": "Search",
   "LOADING_STATES": "Loading patient states...",
-  "ERROR_SEARCH": "This patient does not exist or was entered incorrectly",
+  "NOT_FOUND_ERROR": "This patient does not exist or was entered incorrectly",
   "LANGUAGE": "en",
   "LAST_STATE": "Take me to the last state",
   "SELECT_IDIOM": "Select a language",
@@ -18,5 +19,7 @@
   "SKIP_INTRO": "Skip the intro",
   "END_INTRO": "End the intro",
   "INTRO": "The application allows you to know the status of a family member who receives a surgical intervention or emergency care at the Mataró Hospital instantly.",
-  "LONG_LANGUAGE": "English"
+  "LONG_LANGUAGE": "English",
+  "ERROR_SEARCH_LEGAL": "Accept the legal terms and conditions to access patient follow-up",
+  "ERROR_SEARCH_ID": "Enter the patient identifier to access the follow-up"
 }

@@ -48,50 +48,62 @@ export class SearchPatientPage implements OnInit {
     else this.checkBox = false;
   }
 
-  checkButton() {
-    if (this.checkBox && this.patientId != '' && this.patientId != null) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
   directToEmergencyTracking() {
-    this.api.getPatient(this.patientId).subscribe((result) => {
-      this.response = result;
-    });
-
-    if (
-      this.response.patientId == this.patientId &&
-      this.response.hospitalCareType == this.hospitalCareType
-    ) {
-      this.router.navigate([
-        '/tracking-room',
-        {
-          patientId: this.patientId,
-          hospitalCareType: this.hospitalCareType,
-        },
-      ]);
+    if (this.patientId == '' || this.patientId == null) {
+      this.presentToastSearchIdError();
+    } else if (!this.checkBox) {
+      this.presentToastSearchLegalError();
     } else {
-      this.presentToast();
-      this.response = null;
+      this.api.getPatient(this.patientId).subscribe((result) => {
+        this.response = result;
+      });
+
+      if (
+        this.response.patientId == this.patientId &&
+        this.response.hospitalCareType == this.hospitalCareType
+      ) {
+        this.router.navigate([
+          '/tracking-room',
+          {
+            patientId: this.patientId,
+            hospitalCareType: this.hospitalCareType,
+          },
+        ]);
+      } else {
+        this.presentToastErrorSearch();
+        this.response = null;
+      }
     }
   }
 
-  async presentToast() {
+  directToLegal() {
+    this.router.navigate(['/legal', { goMenu: 'true' }]);
+  }
+
+  private async presentToastErrorSearch() {
     const toast = await this.toastController.create({
-      message: this.translateService.instant('ERROR_SEARCH'),
+      message: this.translateService.instant('NOT_FOUND_ERROR'),
       duration: 2000,
       position: 'middle',
     });
     toast.present();
   }
 
-  private async presentLoadingSearchingPatient() {
-    var loading = await this.loadingController.create({
-      message: this.translateService.instant('LOADING_STATES'),
-      spinner: 'bubbles',
+  private async presentToastSearchLegalError() {
+    var toast = await this.toastController.create({
+      message: this.translateService.instant('ERROR_SEARCH_LEGAL'),
+      duration: 2000,
+      position: 'middle',
     });
-    return await loading.present();
+    toast.present();
+  }
+
+  private async presentToastSearchIdError() {
+    var toast = await this.toastController.create({
+      message: this.translateService.instant('ERROR_SEARCH_ID'),
+      duration: 2000,
+      position: 'middle',
+    });
+    toast.present();
   }
 }

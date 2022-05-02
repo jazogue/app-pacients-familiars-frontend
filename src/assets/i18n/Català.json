@@ -3,14 +3,15 @@
   "ROOM_EMER": "Sala d'espera urgències",
   "ROOM_SURG": "Sala d'espera quirúrgic",
   "TRACK_CODE": "Introdueixi el número de seguiment del pacient",
-  "LEGAL_TERMS": "Accepto els termes i condicions legals",
+  "LEGAL_TERMS_1": "Accepto els ",
+  "LEGAL_TERMS_2": "termes i les condicions",
   "MENU": "Menú",
   "LEGAL_COND": "Condicions legals",
   "CONTACT": "Contacte",
   "IDIOM": "Idioma",
   "SEARCH": "Cerca",
   "LOADING_STATES": "Carregant estats del pacient...",
-  "ERROR_SEARCH": "Aquest pacient no existeix o es va introduir de manera incorrecta",
+  "NOT_FOUND_ERROR": "Aquest pacient no existeix o es va introduir de manera incorrecta",
   "LANGUAGE": "ca",
   "LAST_STATE": "Porta'm a l'últim estat",
   "SELECT_IDIOM": "Seleccioni un idioma",
@@ -18,5 +19,7 @@
   "SKIP_INTRO": "Saltar la introducció",
   "END_INTRO": "Finalitzar la introducció",
   "INTRO": "L'aplicació permet conèixer l'estat d'un familiar que rebi una intervenció quirúrgica o atenció d'urgències a l'Hospital de Mataró de manera instantània.",
-  "LONG_LANGUAGE": "Català"
+  "LONG_LANGUAGE": "Català",
+  "ERROR_SEARCH_LEGAL": "Accepti els termes i condicions legals per accedir al seguiment del pacient",
+  "ERROR_SEARCH_ID": "Introdueixi l'identificador del pacient per accedir al seguiment"
 }
