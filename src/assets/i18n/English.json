@@ -11,6 +11,7 @@
   "IDIOM": "Idiom",
   "SEARCH": "Search",
   "LOADING_STATES": "Loading patient states...",
+  "LOADING_PATIENT": "Searching the patient...",
   "NOT_FOUND_ERROR": "This patient does not exist or was entered incorrectly",
   "LANGUAGE": "en",
   "LAST_STATE": "Take me to the last state",

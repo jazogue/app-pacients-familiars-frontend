@@ -10,7 +10,7 @@ export class ApiService {
   constructor(public http: HttpClient) {}
   private apiKey: string = 'AIzaSyCo3vh6kzsSbmlSRKHqXazSFbAqrmMgi28';
 
-  getPatient(patientId): Observable<any> {
+  getPatient(patientId) {
     return this.http.get('http://localhost:8080/patient/' + patientId).pipe(
       catchError((error) => {
         if (error.status === 404) return [];

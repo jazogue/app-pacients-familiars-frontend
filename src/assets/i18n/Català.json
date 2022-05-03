@@ -11,6 +11,7 @@
   "IDIOM": "Idioma",
   "SEARCH": "Cerca",
   "LOADING_STATES": "Carregant estats del pacient...",
+  "LOADING_PATIENT": "Buscant el pacient...",
   "NOT_FOUND_ERROR": "Aquest pacient no existeix o es va introduir de manera incorrecta",
   "LANGUAGE": "ca",
   "LAST_STATE": "Porta'm a l'últim estat",

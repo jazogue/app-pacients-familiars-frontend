@@ -36,11 +36,11 @@ export class SearchPatientPage implements OnInit {
     }
   }
 
-  public patientId: string;
+  public patientId: string = '';
   public hospitalCareType: HospitalCareType;
   public hospitalCareTypeText: string;
   public checkBox: boolean;
-  public response: any = null;
+  public response: any;
   filtersLoaded: Promise<boolean>;
 
   isChecked(event) {
@@ -53,26 +53,31 @@ export class SearchPatientPage implements OnInit {
       this.presentToastSearchIdError();
     } else if (!this.checkBox) {
       this.presentToastSearchLegalError();
-    } else {
-      this.api.getPatient(this.patientId).subscribe((result) => {
+    } else if (this.patientId !== null && this.patientId !== '') {
+      let searchPatient = this.patientId;
+      this.api.getPatient(searchPatient).subscribe((result) => {
         this.response = result;
       });
 
-      if (
-        this.response.patientId == this.patientId &&
-        this.response.hospitalCareType == this.hospitalCareType
-      ) {
-        this.router.navigate([
-          '/tracking-room',
-          {
-            patientId: this.patientId,
-            hospitalCareType: this.hospitalCareType,
-          },
-        ]);
-      } else {
-        this.presentToastErrorSearch();
-        this.response = null;
-      }
+      this.presentLoadingWithOptions();
+      setTimeout(() => {
+        if (
+          this.response.patientId != null &&
+          this.response.patientId == this.patientId &&
+          this.response.hospitalCareType == this.hospitalCareType
+        ) {
+          this.router.navigate([
+            '/tracking-room',
+            {
+              patientId: this.patientId,
+              hospitalCareType: this.hospitalCareType,
+            },
+          ]);
+        } else {
+          this.presentToastErrorSearch();
+          this.response = null;
+        }
+      }, 1000);
     }
   }
 
@@ -105,5 +110,14 @@ export class SearchPatientPage implements OnInit {
       position: 'middle',
     });
     toast.present();
+  }
+
+  private async presentLoadingWithOptions() {
+    var loading = await this.loadingController.create({
+      message: this.translateService.instant('LOADING_PATIENT'),
+      spinner: 'bubbles',
+      duration: 1000,
+    });
+    return await loading.present();
   }
 }
