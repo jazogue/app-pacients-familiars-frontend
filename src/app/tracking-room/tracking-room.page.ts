@@ -113,8 +113,9 @@ export class TrackingRoomPage implements OnInit {
       .getAllTranslations(states, this.translateService.instant('LANGUAGE'))
       .subscribe((result: any) => {
         for (let i = 0; i < states.length; i++) {
-          translatedStates[i].stateName =
-            result.data.translations[i].translatedText;
+          translatedStates[i].stateName = result.data.translations[
+            i
+          ].translatedText.replaceAll('&#39;', '`');
         }
         //this.loadingController.dismiss();
       });

@@ -26,10 +26,10 @@
     </ion-button>
   </ion-list>
   <ion-card
-    *ngFor="let iniState of initialStates; let last = last;"
+    *ngFor="let iniState of initialStates.slice().reverse(); let first = first;"
     class="card-center"
   >
-    <div *ngIf="last">
+    <div *ngIf="first">
       <div [ngStyle]="{'color': 'white', 'background': '#3e4a74'}">
         <ion-card-content>
           <h2><strong>{{iniState.stateName}}</strong></h2>
@@ -37,7 +37,7 @@
         </ion-card-content>
       </div>
     </div>
-    <div *ngIf="!last">
+    <div *ngIf="!first">
       <ion-card-content>
         <h2>{{iniState.stateName}}</h2>
         <h5>{{iniState.startTime | date:'hh:mm'}}</h5>
