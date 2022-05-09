@@ -5,7 +5,6 @@ import { ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { HospitalCareType } from '../enum-hospitalCareType';
 import { TranslateService } from '@ngx-translate/core';
-import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-emergencies',
@@ -18,7 +17,6 @@ export class SearchPatientPage implements OnInit {
     private router: Router,
     public toastController: ToastController,
     public activatedRoute: ActivatedRoute,
-    public loadingController: LoadingController,
     public translateService: TranslateService
   ) {
     this.hospitalCareType = this.activatedRoute.snapshot.paramMap.get(
@@ -54,18 +52,9 @@ export class SearchPatientPage implements OnInit {
     } else if (!this.checkBox) {
       this.presentToastSearchLegalError();
     } else if (this.patientId !== null && this.patientId !== '') {
-      let searchPatient = this.patientId;
-      this.api.getPatient(searchPatient).subscribe((result) => {
-        this.response = result;
-      });
-
-      this.presentLoadingWithOptions();
-      setTimeout(() => {
-        if (
-          this.response.patientId != null &&
-          this.response.patientId == this.patientId &&
-          this.response.hospitalCareType == this.hospitalCareType
-        ) {
+      this.api.getPatient(this.patientId).subscribe(
+        (result) => {
+          this.response = result;
           this.router.navigate([
             '/tracking-room',
             {
@@ -73,11 +62,11 @@ export class SearchPatientPage implements OnInit {
               hospitalCareType: this.hospitalCareType,
             },
           ]);
-        } else {
+        },
+        (err) => {
           this.presentToastErrorSearch();
-          this.response = null;
         }
-      }, 1000);
+      );
     }
   }
 
@@ -110,14 +99,5 @@ export class SearchPatientPage implements OnInit {
       position: 'middle',
     });
     toast.present();
-  }
-
-  private async presentLoadingWithOptions() {
-    var loading = await this.loadingController.create({
-      message: this.translateService.instant('LOADING_PATIENT'),
-      spinner: 'bubbles',
-      duration: 1000,
-    });
-    return await loading.present();
   }
 }

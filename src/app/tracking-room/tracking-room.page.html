@@ -13,18 +13,6 @@
 </ion-header>
 
 <ion-content [scrollEvents]="true">
-  <ion-list style="text-align: center">
-    <ion-button
-      class="goToTheLastStateButton"
-      size="medium"
-      color="primary-color"
-      fill="outline"
-      (click)="goToTheLastState()"
-    >
-      {{ "LAST_STATE" | translate }}
-      <ion-icon slot="start" name="arrow-down-outline"></ion-icon>
-    </ion-button>
-  </ion-list>
   <ion-card
     *ngFor="let iniState of initialStates.slice().reverse(); let first = first;"
     class="card-center"

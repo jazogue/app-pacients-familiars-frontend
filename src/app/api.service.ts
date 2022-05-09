@@ -13,7 +13,9 @@ export class ApiService {
   getPatient(patientId) {
     return this.http.get('http://localhost:8080/patient/' + patientId).pipe(
       catchError((error) => {
-        if (error.status === 404) return [];
+        if (error.status === 404 || error.status === 500) {
+          return error;
+        }
       })
     );
   }

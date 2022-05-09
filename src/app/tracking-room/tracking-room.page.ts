@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { interval, Subscription } from 'rxjs';
@@ -14,7 +14,7 @@ import { IonContent } from '@ionic/angular';
   templateUrl: './tracking-room.page.html',
   styleUrls: ['./tracking-room.page.scss'],
 })
-export class TrackingRoomPage implements OnInit {
+export class TrackingRoomPage implements OnInit, OnDestroy {
   patientId: string = '';
   hospitalCareType: string;
   initialStates: any = [];
@@ -156,9 +156,5 @@ export class TrackingRoomPage implements OnInit {
       position: 'middle',
     });
     toast.present();
-  }
-
-  goToTheLastState() {
-    this.content.scrollToBottom(1000);
   }
 }
