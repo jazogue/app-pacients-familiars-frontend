@@ -16,6 +16,8 @@ export class AppComponent {
     private menu: MenuController,
     private translateService: TranslateService
   ) {
+    this.translateService.setDefaultLang('Català');
+    this.translateService.addLangs(['Català', 'Español', 'English']);
     this.langs = this.translateService.getLangs();
   }
   goToLegalConditions() {

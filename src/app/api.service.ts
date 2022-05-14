@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
   constructor(public http: HttpClient) {}
-  private apiKey: string = 'AIzaSyCo3vh6kzsSbmlSRKHqXazSFbAqrmMgi28';
 
   getPatient(patientId) {
     return this.http.get('http://localhost:8080/patient/' + patientId).pipe(
@@ -20,8 +19,13 @@ export class ApiService {
     );
   }
 
-  getAllStates(patientId) {
-    return this.http.get('http://localhost:8080/states/patient/' + patientId);
+  getAllStates(admissionId, idiom) {
+    return this.http.get(
+      'http://localhost:8080/states/admission/' +
+        admissionId +
+        '/idiom/' +
+        idiom
+    );
   }
 
   getNumberNewStates(patientId) {
@@ -36,35 +40,15 @@ export class ApiService {
     );
   }
 
-  getTranslation(text, idiom) {
-    return this.http.post(
-      'https://translation.googleapis.com/language/translate/v2?key=' +
-        this.apiKey,
-      JSON.parse('{ "q": ["' + text + '"], "target": "' + idiom + '" }')
-    );
-  }
-
-  getAllTranslations(states, idiom) {
-    return this.http.post(
-      'https://translation.googleapis.com/language/translate/v2?key=' +
-        this.apiKey,
-      JSON.parse(
-        '{ "q": ' +
-          this.prepareJsonAllTranslations(states) +
-          ', "target": "' +
-          idiom +
-          '" }'
-      )
-    );
-  }
-
-  private prepareJsonAllTranslations(states) {
-    var statesString: string = '[';
-    for (let i = 0; i < states.length; i++) {
-      statesString += '"' + states[i].stateName + '"';
-      if (i < states.length - 1) statesString += ', ';
-    }
-    statesString += ']';
-    return statesString;
+  getAdmissionByPatientId(patientId) {
+    return this.http
+      .get('http://localhost:8080/admission/active/patient/' + patientId)
+      .pipe(
+        catchError((error) => {
+          if (error.status === 404 || error.status === 500) {
+            return error;
+          }
+        })
+      );
   }
 }

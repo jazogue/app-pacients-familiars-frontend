@@ -14,10 +14,7 @@ export class HomePage implements OnInit {
     public translateService: TranslateService
   ) {}
 
-  ngOnInit() {
-    this.translateService.setDefaultLang('Català');
-    this.translateService.addLangs(['Català', 'Español', 'English']);
-  }
+  ngOnInit() {}
 
   directToEmergency() {
     this.router.navigate([

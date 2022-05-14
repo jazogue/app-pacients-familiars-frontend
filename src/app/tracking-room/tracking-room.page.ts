@@ -16,11 +16,12 @@ import { IonContent } from '@ionic/angular';
 })
 export class TrackingRoomPage implements OnInit, OnDestroy {
   patientId: string = '';
+  admissionId: string = '';
   hospitalCareType: string;
   initialStates: any = [];
   newStatesObject: any = [];
-  newStatesNumber: any;
   subscription: Subscription;
+  newStatesNumber: number;
   idiom: string;
   @ViewChild(IonContent, { static: true }) content: IonContent;
 
@@ -39,33 +40,43 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.idiom = this.translateService.instant('LANGUAGE');
-    this.api.getAllStates(this.patientId).subscribe((result) => {
-      this.initialStates = this.translateAllStates(result);
-    });
+
+    this.api
+      .getAdmissionByPatientId(this.patientId)
+      .subscribe((result: any) => {
+        this.admissionId = result.admissionId;
+
+        this.api
+          .getAllStates(this.admissionId, this.idiom)
+          .subscribe((result) => {
+            this.initialStates = result;
+          });
+      });
 
     const source = interval(2000);
     this.subscription = source.subscribe((val) => this.updateStates());
   }
 
   updateStates() {
-    if (this.idiom == this.translateService.instant('LANGUAGE')) {
-      this.api.getAllStates(this.patientId).subscribe((result) => {
-        this.newStatesObject = result;
-      });
-      this.newStatesNumber =
-        this.newStatesObject.length - this.initialStates.length;
+    this.api.getAllStates(this.admissionId, this.idiom).subscribe((result) => {
+      this.newStatesObject = result;
+    });
 
-      if (this.newStatesNumber > 0) {
-        this.addNewStates();
-        this.foundNewStatesToast();
-      }
-    } else {
-      this.api.getAllStates(this.patientId).subscribe((result) => {
-        let translatedStates = this.translateAllStates(result);
-        this.initialStates = translatedStates;
-        this.newStatesObject = translatedStates;
-      });
+    this.newStatesNumber =
+      this.newStatesObject.length - this.initialStates.length;
+
+    if (this.newStatesNumber > 0) {
+      this.addNewStates();
+      this.foundNewStatesToast();
+    }
+
+    if (this.idiom !== this.translateService.instant('LANGUAGE')) {
       this.idiom = this.translateService.instant('LANGUAGE');
+      this.api
+        .getAllStates(this.admissionId, this.idiom)
+        .subscribe((result) => {
+          this.initialStates = result;
+        });
     }
   }
 
@@ -92,7 +103,7 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
         }
       }
       if (!found) {
-        this.initialStates.push(this.translateState(this.newStatesObject[i]));
+        this.initialStates.push(this.newStatesObject[i]);
         this.newStatesNumber--;
       }
       found = false;
@@ -103,33 +114,6 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
       else if (a.startTime > b.startTime) return 1;
       else return 0;
     });
-  }
-
-  private translateAllStates(states) {
-    var translatedStates: any = states;
-
-    //this.presentLoadingWithOptions();
-    this.api
-      .getAllTranslations(states, this.translateService.instant('LANGUAGE'))
-      .subscribe((result: any) => {
-        for (let i = 0; i < states.length; i++) {
-          translatedStates[i].stateName = result.data.translations[
-            i
-          ].translatedText.replaceAll('&#39;', '`');
-        }
-        //this.loadingController.dismiss();
-      });
-
-    return translatedStates;
-  }
-
-  private translateState(text) {
-    this.api
-      .getTranslation(text.stateName, this.translateService.instant('LANGUAGE'))
-      .subscribe((result: any) => {
-        text.stateName = result.data.translations[0].translatedText;
-      });
-    return text;
   }
 
   private async presentLoadingWithOptions() {

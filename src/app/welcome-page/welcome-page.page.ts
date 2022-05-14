@@ -18,8 +18,6 @@ export class WelcomePagePage implements OnInit {
   @ViewChild('langSelector') select: IonSelect;
 
   ngOnInit() {
-    this.translateService.setDefaultLang('Català');
-    this.translateService.addLangs(['Català', 'Español', 'English']);
     this.langs = this.translateService.getLangs();
     const checkView = localStorage.getItem('pageDisplayed');
     /*
