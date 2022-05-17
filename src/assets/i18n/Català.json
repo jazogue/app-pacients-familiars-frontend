@@ -22,5 +22,10 @@
   "INTRO": "L'aplicació permet conèixer l'estat d'un familiar que rebi una intervenció quirúrgica o atenció d'urgències a l'Hospital de Mataró de manera instantània.",
   "LONG_LANGUAGE": "Català",
   "ERROR_SEARCH_LEGAL": "Accepti els termes i condicions legals per accedir al seguiment del pacient",
-  "ERROR_SEARCH_ID": "Introdueixi l'identificador del pacient per accedir al seguiment"
+  "ERROR_SEARCH_ID": "Introdueixi l'identificador del pacient per accedir al seguiment",
+  "ADDRESS": "Adreça",
+  "ADDRESS_VALUE": "Carrer de Cirera, 230, 08304 Mataró, Barcelona",
+  "ADDRESS_GO": "Porta'm a l'hospital",
+  "TELEPHONE": "Telèfon",
+  "TELEPHONE_GO": "Trucar a l'hospital"
 }

@@ -13,19 +13,65 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
-    <ion-item>
-      <ion-label>Contacto</ion-label>
-    </ion-item>
-    <ion-card-content>
-      <ion-item>
-        <ion-text>
-          <h3>Dirección:</h3>
-          <h4>Carr. de Cirera, 230, 08304 Mataró, Barcelona</h4>
-          <h3>Teléfono:</h3>
-          <h4>+34 937 41 77 00</h4>
-        </ion-text>
+  <div id="container">
+    <ion-card>
+      <ion-item lines="none">
+        <ion-title><h1>{{ "CONTACT" | translate }}</h1></ion-title>
       </ion-item>
-    </ion-card-content>
-  </ion-card>
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-text>
+            <h2>{{ "ADDRESS" | translate }}</h2>
+            <h2>
+              <font color="#3e4a74">{{ "ADDRESS_VALUE" | translate }}</font>
+            </h2>
+          </ion-text>
+        </ion-item>
+        <ion-item lines="none" class="center-button">
+          <ion-title>
+            <ion-button
+              size="medium"
+              color="primary-color"
+              fill="outline"
+              class="room-surg-bottons"
+              (click)="goToHospitalLocation()"
+            >
+              <ion-label>
+                <ion-text>
+                  <h2>{{ "ADDRESS_GO" | translate }}</h2>
+                </ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="location-outline"></ion-icon>
+              <ion-icon slot="end" name="chevron-forward"></ion-icon>
+            </ion-button>
+          </ion-title>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-text>
+            <h2>{{ "TELEPHONE" | translate }}:</h2>
+            <h2><font color="#3e4a74">+34 937 41 77 00</font></h2>
+          </ion-text>
+        </ion-item>
+        <ion-item lines="none" class="center-button">
+          <ion-title>
+            <ion-button
+              size="medium"
+              color="primary-color"
+              fill="outline"
+              class="room-surg-bottons"
+              (click)="callToTheHospital()"
+            >
+              <ion-label>
+                <ion-text>
+                  <h2>{{ "TELEPHONE_GO" | translate }}</h2>
+                </ion-text>
+              </ion-label>
+              <ion-icon slot="start" name="call-outline"></ion-icon>
+              <ion-icon slot="end" name="chevron-forward"></ion-icon>
+            </ion-button>
+          </ion-title>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

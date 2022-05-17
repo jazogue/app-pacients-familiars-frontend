@@ -22,5 +22,10 @@
   "INTRO": "The application allows you to know the status of a family member who receives a surgical intervention or emergency care at the Mataró Hospital instantly.",
   "LONG_LANGUAGE": "English",
   "ERROR_SEARCH_LEGAL": "Accept the legal terms and conditions to access patient follow-up",
-  "ERROR_SEARCH_ID": "Enter the patient identifier to access the follow-up"
+  "ERROR_SEARCH_ID": "Enter the patient identifier to access the follow-up",
+  "ADDRESS": "Address",
+  "ADDRESS_VALUE": "Cirera Street, 230, 08304 Mataró, Barcelona",
+  "ADDRESS_GO": "Head to the hospital",
+  "TELEPHONE": "Telephone",
+  "TELEPHONE_GO": "Call the hospital"
 }

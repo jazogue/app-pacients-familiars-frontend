@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 
 import {
   TranslateModule,
@@ -36,7 +38,11 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    CallNumber,
+    InAppBrowser,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
