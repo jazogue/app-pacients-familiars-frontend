@@ -79,6 +79,7 @@ export class SearchPatientPage implements OnInit {
       message: this.translateService.instant('NOT_FOUND_ERROR'),
       duration: 2000,
       position: 'middle',
+      color: 'secondary',
     });
     toast.present();
   }
@@ -88,6 +89,7 @@ export class SearchPatientPage implements OnInit {
       message: this.translateService.instant('ERROR_SEARCH_LEGAL'),
       duration: 2000,
       position: 'middle',
+      color: 'secondary',
     });
     toast.present();
   }
@@ -97,6 +99,7 @@ export class SearchPatientPage implements OnInit {
       message: this.translateService.instant('ERROR_SEARCH_ID'),
       duration: 2000,
       position: 'middle',
+      color: 'secondary',
     });
     toast.present();
   }

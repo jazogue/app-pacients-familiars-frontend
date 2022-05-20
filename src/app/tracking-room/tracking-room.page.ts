@@ -21,7 +21,6 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
   initialStates: any = [];
   newStatesObject: any = [];
   subscription: Subscription;
-  newStatesNumber: number;
   idiom: string;
   @ViewChild(IonContent, { static: true }) content: IonContent;
 
@@ -62,11 +61,18 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
       this.newStatesObject = result;
     });
 
-    this.newStatesNumber =
+    var newStatesNumber =
       this.newStatesObject.length - this.initialStates.length;
 
-    if (this.newStatesNumber > 0) {
-      this.addNewStates();
+    if (newStatesNumber > 0) {
+      var newStates = this.newStatesObject.slice(
+        this.newStatesObject.length - newStatesNumber - 1,
+        this.newStatesObject.length - 1
+      );
+      for (let i = 0; i < newStatesNumber; i++) {
+        this.initialStates.push(newStates[i]);
+      }
+      this.initialStates.push();
       this.foundNewStatesToast();
     }
 
@@ -84,38 +90,6 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  private addNewStates() {
-    var found = false;
-
-    for (
-      let i = 0;
-      i < this.newStatesObject.length && this.newStatesNumber > 0;
-      i++
-    ) {
-      for (
-        let j = 0;
-        j < this.initialStates.length && this.newStatesNumber > 0;
-        j++
-      ) {
-        if (this.newStatesObject[i].stateId == this.initialStates[j].stateId) {
-          found = true;
-          break;
-        }
-      }
-      if (!found) {
-        this.initialStates.push(this.newStatesObject[i]);
-        this.newStatesNumber--;
-      }
-      found = false;
-    }
-
-    this.initialStates.sort((a, b) => {
-      if (a.startTime < b.startTime) return -1;
-      else if (a.startTime > b.startTime) return 1;
-      else return 0;
-    });
-  }
-
   private async presentLoadingWithOptions() {
     var loading = await this.loadingController.create({
       message: this.translateService.instant('LOADING_STATES'),
@@ -129,15 +103,7 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
       message: 'Nuevo estado',
       duration: 1000,
       position: 'middle',
-    });
-    toast.present();
-  }
-
-  private async notFoundNewStatesToast() {
-    const toast = await this.toastController.create({
-      message: 'No hay nuevos estados',
-      duration: 2000,
-      position: 'middle',
+      color: 'primary',
     });
     toast.present();
   }
