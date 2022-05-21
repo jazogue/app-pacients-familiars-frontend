@@ -1,13 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ApiService } from '../api.service';
+import { ApiService } from '../../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { interval, Subscription } from 'rxjs';
-import { HospitalCareType } from '../enum-hospitalCareType';
 import { LoadingController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastController } from '@ionic/angular';
-import { ViewChild } from '@angular/core';
-import { IonContent } from '@ionic/angular';
 
 @Component({
   selector: 'app-emergencies-tracking',
@@ -15,29 +12,24 @@ import { IonContent } from '@ionic/angular';
   styleUrls: ['./tracking-room.page.scss'],
 })
 export class TrackingRoomPage implements OnInit, OnDestroy {
-  patientId: string = '';
-  admissionId: string = '';
-  hospitalCareType: string;
-  initialStates: any = [];
-  newStatesObject: any = [];
-  subscription: Subscription;
-  idiom: string;
-  @ViewChild(IonContent, { static: true }) content: IonContent;
+  private patientId: string = '';
+  private admissionId: string = '';
+
+  private initialStates: any = [];
+  private newStatesObject: any = [];
+  private subscription: Subscription;
+  private idiom: string;
 
   constructor(
-    public api: ApiService,
-    public activatedRoute: ActivatedRoute,
-    public loadingController: LoadingController,
-    public toastController: ToastController,
-    public translateService: TranslateService
-  ) {
-    this.patientId = this.activatedRoute.snapshot.paramMap.get('patientId');
-    this.hospitalCareType = this.activatedRoute.snapshot.paramMap.get(
-      'hospitalCareType'
-    ) as HospitalCareType;
-  }
+    private api: ApiService,
+    private activatedRoute: ActivatedRoute,
+    private loadingController: LoadingController,
+    private toastController: ToastController,
+    private translateService: TranslateService
+  ) {}
 
   ngOnInit() {
+    this.patientId = this.activatedRoute.snapshot.paramMap.get('patientId');
     this.idiom = this.translateService.instant('LANGUAGE');
 
     this.api

@@ -20,24 +20,13 @@ export class AppComponent {
     this.translateService.addLangs(['Català', 'Español', 'English']);
     this.langs = this.translateService.getLangs();
   }
-  goToLegalConditions() {
+  goToLegalConditionsOrContact(selected: string) {
     var url: string = this.getUrl();
 
     if (url != '/legal' && url != '/contact') {
-      this.router.navigate(['/legal', { goMenu: 'true' }]);
+      this.router.navigate(['/' + selected, { goMenu: 'true' }]);
     } else {
-      this.router.navigate(['/legal', { goMenu: 'false' }]);
-    }
-    this.closeTheMenu();
-  }
-
-  goToContactDetails() {
-    var url: string = this.getUrl();
-
-    if (url != '/legal' && url != '/contact') {
-      this.router.navigate(['/contact', { goMenu: 'true' }]);
-    } else {
-      this.router.navigate(['/contact', { goMenu: 'false' }]);
+      this.router.navigate(['/' + selected, { goMenu: 'false' }]);
     }
     this.closeTheMenu();
   }

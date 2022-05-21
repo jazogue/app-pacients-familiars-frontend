@@ -12,11 +12,11 @@
     </ion-header>
     <ion-content>
       <ion-list class="menuOptions" lines="none">
-        <ion-item (click)="goToLegalConditions()">
+        <ion-item (click)="goToLegalConditionsOrContact('legal')">
           <img src="assets/img/policy.png" width="40px" />
           <ion-label>{{ "LEGAL_COND" | translate }}</ion-label></ion-item
         >
-        <ion-item (click)="goToContactDetails()">
+        <ion-item (click)="goToLegalConditionsOrContact('contact')">
           <img src="assets/img/calling.png" width="40px" />
           <ion-label>{{ "CONTACT" | translate }}</ion-label></ion-item
         >

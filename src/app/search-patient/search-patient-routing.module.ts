@@ -8,6 +8,13 @@ const routes: Routes = [
     path: '',
     component: SearchPatientPage,
   },
+  {
+    path: 'tracking-room',
+    loadChildren: () =>
+      import('./tracking-room/tracking-room.module').then(
+        (m) => m.TrackingRoomPageModule
+      ),
+  },
 ];
 
 @NgModule({

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HospitalCareType } from '../enum-hospitalCareType';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -9,10 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  constructor(
-    private router: Router,
-    public translateService: TranslateService
-  ) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 

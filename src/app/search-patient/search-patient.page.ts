@@ -13,11 +13,11 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class SearchPatientPage implements OnInit {
   constructor(
-    public api: ApiService,
+    private api: ApiService,
     private router: Router,
-    public toastController: ToastController,
-    public activatedRoute: ActivatedRoute,
-    public translateService: TranslateService
+    private toastController: ToastController,
+    private activatedRoute: ActivatedRoute,
+    private translateService: TranslateService
   ) {
     this.hospitalCareType = this.activatedRoute.snapshot.paramMap.get(
       'hospitalCareType'
@@ -34,12 +34,11 @@ export class SearchPatientPage implements OnInit {
     }
   }
 
-  public patientId: string = '';
-  public hospitalCareType: HospitalCareType;
-  public hospitalCareTypeText: string;
-  public checkBox: boolean;
-  public response: any;
-  filtersLoaded: Promise<boolean>;
+  private patientId: string = '';
+  private hospitalCareType: HospitalCareType;
+  private hospitalCareTypeText: string;
+  private checkBox: boolean;
+  private response: any;
 
   isChecked(event) {
     if (event.currentTarget.checked) this.checkBox = true;
@@ -56,7 +55,7 @@ export class SearchPatientPage implements OnInit {
         (result) => {
           this.response = result;
           this.router.navigate([
-            '/tracking-room',
+            'search-patient/tracking-room',
             {
               patientId: this.patientId,
               hospitalCareType: this.hospitalCareType,

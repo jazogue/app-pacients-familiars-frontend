@@ -21,7 +21,10 @@ ion-row {
 
 ion-card {
   box-shadow: none !important;
+  width: 100% !important;
+  margin: 0 !important;
 }
+
 .searchButton {
   --border-radius: 0px;
   text-transform: none;

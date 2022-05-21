@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contact',
@@ -12,15 +11,14 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./contact.page.scss'],
 })
 export class ContactPage implements OnInit {
-  goMenu: boolean;
+  private goMenu: boolean;
 
   constructor(
     private router: Router,
-    public activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location,
     private callNumber: CallNumber,
-    private iab: InAppBrowser,
-    public translateService: TranslateService
+    private iab: InAppBrowser
   ) {}
 
   ngOnInit() {

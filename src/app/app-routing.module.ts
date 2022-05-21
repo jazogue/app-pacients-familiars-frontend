@@ -32,13 +32,6 @@ const routes: Routes = [
       import('./contact/contact.module').then((m) => m.ContactPageModule),
   },
   {
-    path: 'tracking-room',
-    loadChildren: () =>
-      import('./tracking-room/tracking-room.module').then(
-        (m) => m.EmergenciesTrackingPageModule
-      ),
-  },
-  {
     path: 'home',
     loadChildren: () =>
       import('./home/home.module').then((m) => m.HomePageModule),

@@ -20,4 +20,4 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   declarations: [TrackingRoomPage],
 })
-export class EmergenciesTrackingPageModule {}
+export class TrackingRoomPageModule {}

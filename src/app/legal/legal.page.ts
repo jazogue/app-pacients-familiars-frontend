@@ -13,7 +13,7 @@ export class LegalPage implements OnInit {
 
   constructor(
     private router: Router,
-    public activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private location: Location
   ) {}
 

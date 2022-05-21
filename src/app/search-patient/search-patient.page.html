@@ -45,24 +45,23 @@
                   </h5>
                 </ion-text>
               </ion-item>
-            </ion-row>
-            <ion-row>
               <ion-checkbox (ionChange)="isChecked($event)"></ion-checkbox>
             </ion-row>
           </ion-col>
-          <br />
-          <ion-button
-            class="searchButton"
-            size="medium"
-            color="primary-color"
-            fill="outline"
-            (click)="directToEmergencyTracking()"
-            id="searchButt"
-          >
-            {{ "SEARCH" | translate }}
-            <ion-icon slot="start" name="search"></ion-icon>
-            <ion-icon slot="end" name="chevron-forward"></ion-icon>
-          </ion-button>
+          <ion-col>
+            <ion-button
+              class="searchButton"
+              size="medium"
+              color="primary-color"
+              fill="outline"
+              (click)="directToEmergencyTracking()"
+              id="searchButt"
+            >
+              {{ "SEARCH" | translate }}
+              <ion-icon slot="start" name="search"></ion-icon>
+              <ion-icon slot="end" name="chevron-forward"></ion-icon>
+            </ion-button>
+          </ion-col>
         </ion-card-content>
       </ion-card>
     </ion-row>

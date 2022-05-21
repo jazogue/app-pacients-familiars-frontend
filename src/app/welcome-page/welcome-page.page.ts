@@ -11,7 +11,7 @@ import { IonSelect } from '@ionic/angular';
 export class WelcomePagePage implements OnInit {
   constructor(
     private router: Router,
-    public translateService: TranslateService
+    private translateService: TranslateService
   ) {}
 
   langs: string[] = [];

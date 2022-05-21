@@ -1,0 +1,43 @@
+ion-header {
+  ion-toolbar,
+  ion-item {
+    --background: #ffffff;
+    background: #ffffff;
+    padding: 0 10px;
+  }
+  ion-title {
+    text-align: center;
+  }
+}
+
+ion-card {
+  box-shadow: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+#container {
+  ion-title {
+    text-align: center;
+  }
+  text-align: justify;
+
+  ion-item {
+    margin: 10px auto;
+  }
+
+  .center-button {
+    ion-title {
+      text-align: center;
+    }
+    .room-surg-bottons {
+      --border-radius: 0px;
+      text-transform: none;
+    }
+  }
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}

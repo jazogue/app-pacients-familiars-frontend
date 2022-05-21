@@ -3,11 +3,44 @@
     <ion-buttons slot="start">
       <ion-back-button (click)="goBackButton()"></ion-back-button>
     </ion-buttons>
-    <ion-title>legal</ion-title>
+    <ion-title>
+      <img src="assets/img/top_bar2.png" width="50px" />
+    </ion-title>
     <ion-buttons slot="end">
       <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <div id="container">
+    <ion-card>
+      <ion-item lines="none">
+        <ion-title><h1>{{ "LEGAL_COND" | translate }}</h1></ion-title>
+      </ion-item>
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-text>
+            <h2>{{ "LEGAL_WARNING_1" | translate }}</h2>
+            <h2>{{ "LEGAL_WARNING_2" | translate }}</h2>
+            <br />
+            <h2>
+              <strong><font color="#3e4a74"> 1.</font></strong> {{
+              "LEGAL_WARNING_3" | translate }}
+            </h2>
+
+            <h2>
+              <strong><font color="#3e4a74"> 2.</font></strong> {{
+              "LEGAL_WARNING_4" | translate }}
+            </h2>
+
+            <h2>
+              <strong><font color="#3e4a74"> 3.</font></strong> {{
+              "LEGAL_WARNING_5" | translate }}
+            </h2>
+          </ion-text>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

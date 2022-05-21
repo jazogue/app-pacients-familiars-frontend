@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { LegalPageRoutingModule } from './legal-routing.module';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { LegalPage } from './legal.page';
 
 @NgModule({
@@ -13,8 +13,9 @@ import { LegalPage } from './legal.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    LegalPageRoutingModule
+    LegalPageRoutingModule,
+    TranslateModule,
   ],
-  declarations: [LegalPage]
+  declarations: [LegalPage],
 })
 export class LegalPageModule {}
