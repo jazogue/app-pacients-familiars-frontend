@@ -58,7 +58,6 @@ export class SearchPatientPage implements OnInit {
             'search-patient/tracking-room',
             {
               patientId: this.patientId,
-              hospitalCareType: this.hospitalCareType,
             },
           ]);
         },

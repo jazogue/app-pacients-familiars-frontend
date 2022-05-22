@@ -10,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   langs: string[] = [];
+  selectedItem: string;
 
   constructor(
     private router: Router,
@@ -22,7 +23,7 @@ export class AppComponent {
   }
   goToLegalConditionsOrContact(selected: string) {
     var url: string = this.getUrl();
-
+    this.selectedItem = selected;
     if (url != '/legal' && url != '/contact') {
       this.router.navigate(['/' + selected, { goMenu: 'true' }]);
     } else {

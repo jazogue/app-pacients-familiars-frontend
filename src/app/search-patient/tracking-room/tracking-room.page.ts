@@ -1,10 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { interval, Subscription } from 'rxjs';
-import { LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { IonContent, LoadingController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastController } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
+import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
 
 @Component({
   selector: 'app-emergencies-tracking',
@@ -14,23 +17,33 @@ import { ToastController } from '@ionic/angular';
 export class TrackingRoomPage implements OnInit, OnDestroy {
   private patientId: string = '';
   private admissionId: string = '';
-
+  private ableNotifications = false;
   private initialStates: any = [];
   private newStatesObject: any = [];
   private subscription: Subscription;
   private idiom: string;
+  private newStatesNumber: number;
+  @ViewChild(IonContent, { static: true }) content: IonContent;
 
   constructor(
     private api: ApiService,
     private activatedRoute: ActivatedRoute,
     private loadingController: LoadingController,
     private toastController: ToastController,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private localNotifications: LocalNotifications,
+    private router: Router,
+    private platform: Platform
   ) {}
 
   ngOnInit() {
     this.patientId = this.activatedRoute.snapshot.paramMap.get('patientId');
     this.idiom = this.translateService.instant('LANGUAGE');
+
+    if (this.platform.is('cordova')) {
+      this.initializeLocalNotifications();
+      this.ableNotifications = true;
+    }
 
     this.api
       .getAdmissionByPatientId(this.patientId)
@@ -53,18 +66,14 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
       this.newStatesObject = result;
     });
 
-    var newStatesNumber =
+    this.newStatesNumber =
       this.newStatesObject.length - this.initialStates.length;
 
-    if (newStatesNumber > 0) {
-      var newStates = this.newStatesObject.slice(
-        this.newStatesObject.length - newStatesNumber - 1,
-        this.newStatesObject.length - 1
-      );
-      for (let i = 0; i < newStatesNumber; i++) {
-        this.initialStates.push(newStates[i]);
+    if (this.newStatesNumber > 0) {
+      this.addNewStates();
+      if (this.ableNotifications) {
+        this.sendNotification();
       }
-      this.initialStates.push();
       this.foundNewStatesToast();
     }
 
@@ -78,8 +87,62 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
     }
   }
 
+  private addNewStates() {
+    var found = false;
+
+    for (
+      let i = 0;
+      i < this.newStatesObject.length && this.newStatesNumber > 0;
+      i++
+    ) {
+      for (
+        let j = 0;
+        j < this.initialStates.length && this.newStatesNumber > 0;
+        j++
+      ) {
+        if (this.newStatesObject[i].eventId == this.initialStates[j].eventId) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        this.initialStates.push(this.newStatesObject[i]);
+        this.newStatesNumber--;
+      }
+      found = false;
+    }
+
+    this.initialStates.sort((a, b) => {
+      if (a.startTime < b.startTime) return -1;
+      else if (a.startTime > b.startTime) return 1;
+      else return 0;
+    });
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  private async initializeLocalNotifications() {
+    await this.localNotifications.requestPermission();
+    this.localNotifications.on('click').subscribe((notification) => {
+      this.router.navigate([
+        'search-patient/tracking-room',
+        {
+          patientId: this.patientId,
+        },
+      ]);
+    });
+  }
+
+  private async sendNotification() {
+    await this.localNotifications.schedule({
+      id: 1,
+      title: 'Testing',
+      text: 'Nuevo estado',
+      led: true,
+      vibrate: true,
+    });
   }
 
   private async presentLoadingWithOptions() {
