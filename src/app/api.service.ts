@@ -28,18 +28,6 @@ export class ApiService {
     );
   }
 
-  getNumberNewStates(patientId) {
-    return this.http.get(
-      'http://localhost:8080/states/patient/' + patientId + '/new/int'
-    );
-  }
-
-  getObjectNewStates(patientId) {
-    return this.http.get(
-      'http://localhost:8080/states/patient/' + patientId + '/new/object'
-    );
-  }
-
   getAdmissionByPatientId(patientId) {
     return this.http
       .get('http://localhost:8080/admission/active/patient/' + patientId)
