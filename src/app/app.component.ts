@@ -17,7 +17,13 @@ export class AppComponent {
     private menu: MenuController,
     private translateService: TranslateService
   ) {
-    this.translateService.setDefaultLang('Català');
+    if (localStorage.getItem('selectedLang') == null) {
+      this.translateService.setDefaultLang('Català');
+    } else {
+      this.translateService.setDefaultLang(
+        localStorage.getItem('selectedLang')
+      );
+    }
     this.translateService.addLangs(['Català', 'Español', 'English']);
     this.langs = this.translateService.getLangs();
   }
@@ -34,6 +40,7 @@ export class AppComponent {
 
   changeLang(event) {
     this.translateService.use(event.detail.value);
+    localStorage.setItem('selectedLang', event.detail.value);
     this.closeTheMenu();
   }
 

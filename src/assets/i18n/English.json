@@ -32,5 +32,8 @@
   "ADDRESS_VALUE": "Cirera Street, 230, 08304 Mataró, Barcelona",
   "ADDRESS_GO": "Head to the hospital",
   "TELEPHONE": "Telephone",
-  "TELEPHONE_GO": "Call the hospital"
+  "TELEPHONE_GO": "Call the hospital",
+  "DISCHARGED_PATIENT": "The entered patient does not have any active virtual follow-up",
+  "NEW_STATE": "New status received",
+  "NOTIFICATION_TITLE": "Virtual follow-up notification - Maresme Health Consortium"
 }

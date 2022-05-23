@@ -24,12 +24,17 @@ export class WelcomePagePage implements OnInit {
     if (checkView) {
       this.router.navigate(['/home']);
     }
-    localStorage.setItem('pageDisplayed', 'Y');^
+    localStorage.setItem('pageDisplayed', 'Y');
     */
   }
 
   changeLang(event) {
     this.translateService.use(event.detail.value);
+    localStorage.setItem('selectedLang', event.detail.value);
+  }
+
+  getLanguage() {
+    return this.translateService.instant('LONG_LANGUAGE').toString();
   }
 
   directToHome() {

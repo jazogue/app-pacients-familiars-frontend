@@ -145,8 +145,8 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
   private async sendNotification() {
     await this.localNotifications.schedule({
       id: 1,
-      title: 'Testing',
-      text: 'Nuevo estado',
+      title: this.translateService.instant('NOTIFICATION_TITLE'),
+      text: this.translateService.instant('NEW_STATE'),
       led: true,
       vibrate: true,
     });
@@ -154,7 +154,7 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
 
   private async foundNewStatesToast() {
     const toast = await this.toastController.create({
-      message: 'Nuevo estado',
+      message: this.translateService.instant('NEW_STATE'),
       duration: 1000,
       position: 'middle',
       color: 'primary',
@@ -164,7 +164,7 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
 
   private async dischargedPatientToast() {
     const toast = await this.toastController.create({
-      message: 'Paciente dado de baja',
+      message: this.translateService.instant('DISCHARGED_PATIENT'),
       duration: 1000,
       position: 'middle',
       color: 'primary',

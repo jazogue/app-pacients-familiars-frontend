@@ -32,5 +32,8 @@
   "ADDRESS_VALUE": "Calle de Cirera, 230, 08304 Mataró, Barcelona",
   "ADDRESS_GO": "Llévame al hospital",
   "TELEPHONE": "Teléfono",
-  "TELEPHONE_GO": "Llamar al hospital"
+  "TELEPHONE_GO": "Llamar al hospital",
+  "DISCHARGED_PATIENT": "El paciente ingresado no tiene ningún seguimiento virtual activo",
+  "NEW_STATE": "Nuevo estado recibido",
+  "NOTIFICATION_TITLE": "Notificación de seguimiento virtual - Consorci Sanitari del Maresme"
 }
