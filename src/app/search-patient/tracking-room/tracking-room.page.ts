@@ -3,7 +3,7 @@ import { ApiService } from '../../api.service';
 import { ActivatedRoute } from '@angular/router';
 import { interval, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { IonContent, LoadingController } from '@ionic/angular';
+import { IonContent } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastController } from '@ionic/angular';
 import { Platform } from '@ionic/angular';
@@ -28,7 +28,6 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
   constructor(
     private api: ApiService,
     private activatedRoute: ActivatedRoute,
-    private loadingController: LoadingController,
     private toastController: ToastController,
     private translateService: TranslateService,
     private localNotifications: LocalNotifications,
@@ -45,17 +44,25 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
       this.ableNotifications = true;
     }
 
-    this.api
-      .getAdmissionByPatientId(this.patientId)
-      .subscribe((result: any) => {
+    this.api.getAdmissionByPatientId(this.patientId).subscribe(
+      (result: any) => {
         this.admissionId = result.admissionId;
 
-        this.api
-          .getAllStates(this.admissionId, this.idiom)
-          .subscribe((result) => {
+        this.api.getAllStates(this.admissionId, this.idiom).subscribe(
+          (result) => {
             this.initialStates = result;
-          });
-      });
+          },
+          (err) => {
+            this.dischargedPatientToast();
+            window.history.back();
+          }
+        );
+      },
+      (err) => {
+        this.dischargedPatientToast();
+        window.history.back();
+      }
+    );
 
     const source = interval(2000);
     this.subscription = source.subscribe((val) => this.updateStates());
@@ -145,17 +152,19 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
     });
   }
 
-  private async presentLoadingWithOptions() {
-    var loading = await this.loadingController.create({
-      message: this.translateService.instant('LOADING_STATES'),
-      spinner: 'bubbles',
-    });
-    return await loading.present();
-  }
-
   private async foundNewStatesToast() {
     const toast = await this.toastController.create({
       message: 'Nuevo estado',
+      duration: 1000,
+      position: 'middle',
+      color: 'primary',
+    });
+    toast.present();
+  }
+
+  private async dischargedPatientToast() {
+    const toast = await this.toastController.create({
+      message: 'Paciente dado de baja',
       duration: 1000,
       position: 'middle',
       color: 'primary',

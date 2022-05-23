@@ -20,17 +20,32 @@ export class ApiService {
   }
 
   getAllStates(admissionId, idiom) {
-    return this.http.get(
-      'http://localhost:8080/states/admission/' +
-        admissionId +
-        '/idiom/' +
-        idiom
-    );
+    return this.http
+      .get(
+        'http://localhost:8080/states/admission/' +
+          admissionId +
+          '/idiom/' +
+          idiom
+      )
+      .pipe(
+        catchError((error) => {
+          if (error.status === 404 || error.status === 500) {
+            return error;
+          }
+        })
+      );
   }
 
   getAdmissionByPatientId(patientId) {
     return this.http
       .get('http://localhost:8080/admission/active/patient/' + patientId)
+      .pipe(
+        catchError((error) => {
+          if (error.status === 404 || error.status === 500) {
+            return error;
+          }
+        })
+      )
       .pipe(
         catchError((error) => {
           if (error.status === 404 || error.status === 500) {
