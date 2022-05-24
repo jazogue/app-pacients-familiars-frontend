@@ -35,5 +35,6 @@
   "TELEPHONE_GO": "Llamar al hospital",
   "DISCHARGED_PATIENT": "El paciente ingresado no tiene ningún seguimiento virtual activo",
   "NEW_STATE": "Nuevo estado recibido",
-  "NOTIFICATION_TITLE": "Notificación de seguimiento virtual - Consorci Sanitari del Maresme"
+  "NOTIFICATION_TITLE": "Notificación de seguimiento virtual - Consorci Sanitari del Maresme",
+  "NO_STATUSES": "No hay estados disponibles, por favor espere en esta ventana"
 }

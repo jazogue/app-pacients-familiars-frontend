@@ -23,6 +23,7 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
   private subscription: Subscription;
   private idiom: string;
   private newStatesNumber: number;
+  private stateAvailable = false;
   @ViewChild(IonContent, { static: true }) content: IonContent;
 
   constructor(
@@ -51,6 +52,9 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
         this.api.getAllStates(this.admissionId, this.idiom).subscribe(
           (result) => {
             this.initialStates = result;
+            if (this.initialStates.length > 0) {
+              this.stateAvailable = true;
+            }
           },
           (err) => {
             this.dischargedPatientToast();
@@ -91,6 +95,10 @@ export class TrackingRoomPage implements OnInit, OnDestroy {
         .subscribe((result) => {
           this.initialStates = result;
         });
+    }
+
+    if (this.initialStates.length > 0) {
+      this.stateAvailable = true;
     }
   }
 

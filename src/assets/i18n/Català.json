@@ -35,5 +35,6 @@
   "TELEPHONE_GO": "Trucar a l'hospital",
   "DISCHARGED_PATIENT": "El pacient introduït no té cap seguiment virtual actiu",
   "NEW_STATE": "Nou estat rebut",
-  "NOTIFICATION_TITLE": "Notificació de seguiment virtual - Consorci Sanitari del Maresme"
+  "NOTIFICATION_TITLE": "Notificació de seguiment virtual - Consorci Sanitari del Maresme",
+  "NO_STATUSES": "No hi ha estats disponibles, si us plau espereu en aquesta finestra"
 }

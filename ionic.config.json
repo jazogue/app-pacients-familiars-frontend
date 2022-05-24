@@ -1,7 +1,10 @@
 {
   "name": "app-pacients-familiars",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
   },
   "type": "angular"
 }
