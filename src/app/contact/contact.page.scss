@@ -10,37 +10,38 @@ ion-header {
   }
 }
 
-ion-card {
-  box-shadow: none !important;
-}
-
-#container {
-  ion-title {
-    text-align: center;
-  }
-  text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-70%);
-
-  ion-item {
-    margin: 10px auto;
+ion-content {
+  ion-card {
+    box-shadow: none !important;
   }
 
-  .center-button {
+  #container {
     ion-title {
       text-align: center;
     }
-    .room-surg-bottons {
-      --border-radius: 0px;
-      text-transform: none;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-70%);
+
+    .center-button {
+      ion-title {
+        text-align: center;
+      }
+      .room-surg-bottons {
+        --border-radius: 0px;
+        text-transform: none;
+      }
     }
+  }
+  #container strong {
+    font-size: 20px;
+    line-height: 26px;
   }
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+ion-item {
+  margin: 10px auto;
 }

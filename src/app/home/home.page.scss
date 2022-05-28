@@ -6,21 +6,21 @@ ion-header {
     padding: 0 10px;
   }
 }
-#container {
-  text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-.room-surg-bottons {
-  --border-radius: 0px;
-  text-transform: none;
+ion-content {
+  #container {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  #container strong {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  .room-bottons {
+    --border-radius: 0px;
+    text-transform: none;
+  }
 }
