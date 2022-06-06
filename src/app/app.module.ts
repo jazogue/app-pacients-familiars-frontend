@@ -41,6 +41,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     CallNumber,
+    AppComponent,
     InAppBrowser,
     LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-legal',
@@ -14,7 +15,8 @@ export class LegalPage implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private appComponent: AppComponent
   ) {}
 
   ngOnInit() {
@@ -23,6 +25,7 @@ export class LegalPage implements OnInit {
   }
 
   goBackButton() {
+    this.appComponent.removeBold();
     if (!this.goMenu) this.router.navigate(['/home']);
     else this.location.back();
   }

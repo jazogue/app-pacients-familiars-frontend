@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-contact',
@@ -18,7 +19,8 @@ export class ContactPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private location: Location,
     private callNumber: CallNumber,
-    private iab: InAppBrowser
+    private iab: InAppBrowser,
+    private appComponent: AppComponent
   ) {}
 
   ngOnInit() {
@@ -27,6 +29,7 @@ export class ContactPage implements OnInit {
   }
 
   goBackButton() {
+    this.appComponent.removeBold();
     if (!this.goMenu) this.router.navigate(['/home']);
     else this.location.back();
   }

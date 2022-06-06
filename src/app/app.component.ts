@@ -27,6 +27,7 @@ export class AppComponent {
     this.translateService.addLangs(['Català', 'Español', 'English']);
     this.langs = this.translateService.getLangs();
   }
+
   goToLegalConditionsOrContact(selected: string) {
     var url: string = this.getUrl();
     this.selectedItem = selected;
@@ -36,6 +37,10 @@ export class AppComponent {
       this.router.navigate(['/' + selected, { goMenu: 'false' }]);
     }
     this.closeTheMenu();
+  }
+
+  removeBold() {
+    this.selectedItem = '';
   }
 
   changeLang(event) {
