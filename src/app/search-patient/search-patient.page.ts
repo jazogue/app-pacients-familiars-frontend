@@ -51,26 +51,29 @@ export class SearchPatientPage implements OnInit {
     } else if (!this.checkBox) {
       this.presentToastSearchLegalError();
     } else if (this.patientId !== null && this.patientId !== '') {
-      this.api.getPatient(this.patientId).subscribe((result) => {
-        this.response = result;
-        this.api.getAdmissionByPatientId(this.patientId).subscribe(
-          (result2: any) => {
-            if (result2.hospitalCareType === this.hospitalCareType.toString()) {
-              this.router.navigate([
-                'search-patient/tracking-room',
-                {
-                  patientId: this.patientId,
-                },
-              ]);
-            } else {
-              this.presentToastErrorSearch();
-            }
-          },
-          (err) => {
-            this.presentToastErrorSearch();
-          }
-        );
-      });
+      this.api.getPatient(this.patientId).subscribe(
+        (result) => {
+          this.api
+            .getAdmissionByPatientId(this.patientId)
+            .subscribe((result2: any) => {
+              if (
+                result2.hospitalCareType === this.hospitalCareType.toString()
+              ) {
+                this.router.navigate([
+                  'search-patient/tracking-room',
+                  {
+                    patientId: this.patientId,
+                  },
+                ]);
+              } else {
+                this.presentToastErrorSearch();
+              }
+            });
+        },
+        (err) => {
+          this.presentToastErrorSearch();
+        }
+      );
     }
   }
 
