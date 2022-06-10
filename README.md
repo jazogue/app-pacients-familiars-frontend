@@ -1,1 +1,1 @@
-# Aplicació de control de sales seguiment virtuals - Frontend
+# Aplicació de seguiment virtual per al familiar - Frontend
