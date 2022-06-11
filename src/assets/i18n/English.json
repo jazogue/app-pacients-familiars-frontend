@@ -20,7 +20,7 @@
   "NOT_FOUND_ERROR": "This patient does not exist or was entered incorrectly",
   "LANGUAGE": "en",
   "LAST_STATE": "Take me to the last state",
-  "SELECT_IDIOM": "Select a language",
+  "SELECT_IDIOM": "Select an idiom",
   "WELCOME": "Welcome to the surgical and emergency follow-up application",
   "SKIP_INTRO": "Skip the intro",
   "END_INTRO": "End the intro",
